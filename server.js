@@ -29,7 +29,10 @@ http.createServer((request, response) => {
         response.write(data)
         response.end()
     })
-
+    //Timestamp everytime a request is being made
+    fs.appendFile('log.txt', `Timestamp: ${new Date()}`,(err) =>{
+        err ? console.error(err) : console.log('Added to log')
+    })
 
     
 }).listen(8080)
