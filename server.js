@@ -7,16 +7,8 @@ http.createServer((request, response) => {
     let addr = request.url,
     q = url.parse(addr, true),
     filePath = ''
-
-    //Retrieves the URL object
-    // console.log('q:', q)
-    // the host name
-    // console.log('host:', q.host)
-    // the pathname 
-    console.log('pathname:', q.pathname)
-    // the search made
-    // console.log('search:', q.search)
     
+    // Incoming requests, if !documentation then home page
     if(q.pathname.includes('documentation')){
         filePath = (`${__dirname}/documentation.html`)
     }else{
