@@ -30,7 +30,7 @@ http.createServer((request, response) => {
         response.end()
     })
     //Timestamp everytime a request is being made
-    fs.appendFile('log.txt', `Timestamp: ${new Date()}`,(err) =>{
+    fs.appendFile('log.txt', `Timestamp: ${new Date()} \n`,(err) =>{
         err ? console.error(err) : console.log('Added to log')
     })
 
