@@ -1,101 +1,87 @@
 
 const express = require('express')
 const app = express()
+const port = 8000
 const morgan = require('morgan')
 const fs = require('fs')
 const path = require('path')
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 
-let topBooks = [
+let topMovies = [
+     {
+        title: "2001: A Space Oddyssey",
+        director: 'Stanley Kubrick',
+        id: 1
+     },
     {
-        title: 'Harry Potter and the Sorcerer\'s Stone',
-        author: 'J.K. Rowling'
+         title: "The Lord of the Rings: The Fellowship of the Ring",
+        director: 'Peter Jackson',
+        id: 2
     },
     {
-        title: 'Lord of the Rings',
-        author: 'J.R.R. Tolkien'
+        title: 'The Matrix',
+        author: 'Wachowski Sisters',
+        id: 3
     },
     {
-        title: 'Twilight',
-        author: 'Stephanie Meyer'
-    }
+        title: 'Joker',
+        author: 'Todd Phillips',
+        id: 4
+    },
+    {
+        title: 'Princess Mononoke',
+        author: 'Hayao Miyazaki',
+        id: 5
+    },
+    {
+        title: 'Fight Club',
+        author: 'David Fincher',
+        id: 6
+    },
+    {
+        title: 'City of God',
+        author: 'Fernando Meirelles',
+        id: 7
+    },
+    {
+        title: 'Parasite',
+        author: 'Bong Joon Ho',
+        id: 8
+    },
+    {
+        title: 'Alien',
+        author: 'Ridley Scott',
+        id: 9
+    },{
+        title: 'Lein',
+        author: 'Luc Besson',
+        id: 10
+    },
 ]
-
-// const myLogger = (request, response, next) =>{
-//     console.log('myLogger, request the URL', request.url)
-//     next()
-// }
-
-// const requestTime = (request, response, next) =>{
-//     request.requestTime = new Date();
-//     next();
-// }
-
-
+// Using morgan middleware for making a stream of number of requests with timestamp and id
 app.use(morgan('combined', { stream: accessLogStream}))
 
 // GET requests
-app.get('/', (request, response) =>{
-    response.send('Welcome to my app!')
+
+// Retrieving static files
+app.use(express.static('public'))
+
+// Getting response for the default endpoint
+app.get('/', (req, res) =>{
+    res.send(`<h1> Welcome to PopcornHub! </h1>`)
 })
 
-app.get('/documentation', (request, response) =>{
-    response.sendFile('/documentation.html', {root: __dirname})
+app.get('/movies', (req, res) =>{
+    res.json(topMovies)
+})
+// Error handlings for every request. It must go at the very end
+app.use((err, req, res, next) =>{
+    console.error(err.stack)
+    res.status(500).send('Something is wrong!')
 })
 
-app.get('/books', (request, response) =>{
-    response.json(topBooks)
+// Calling the server
+app.listen(port, ()=>{
+    console.log(`Server is running in port ${port}...`)
 })
 
-app.listen(8080, ()=>{
-    console.log('Server is runnning on port 8080')
-})
-
-
-
-
-
-
-
-
-
-
-
-
-// const http = require('http'),
-// fs = require('fs'),
-// url = require('url'),
-// port = 8000
-
-// // Server
-// const server = http.createServer((request, response) => {
-//     let addr = request.url,
-//     // Parses the request.url string as first argument, second argument set to true to parse the query string intp an object
-//     q = url.parse(addr, true),
-//     filePath = ''
-
-
-//     // Incoming requests, if !documentation then home page
-//     if(q.pathname.includes('documentation')){
-//         filePath = (`${__dirname}/documentation.html`)
-//     }else{
-//         filePath = 'index.html'
-//     }
-//     //Read the files in the directory
-//     fs.readFile(filePath, (err, data) =>{
-//         if(err) throw err
-//         response.writeHead(200, {'Content-type': 'text/html'})
-//         response.write(data)
-//         response.end()
-//     })
-//     //Timestamp everytime a request is being made
-//     fs.appendFile('log.txt', `Timestamp: ${new Date()} \n`,(err) =>{
-//         err ? console.error(err) : console.log('Added to log')
-//     })
-
-    
-// })
-
-// server.listen(port, () =>{
-//     console.log(`Server is up and running on http://127.0.0.1:${port}/`)
-// })
