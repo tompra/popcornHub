@@ -7,6 +7,7 @@ const fs = require('fs')
 const path = require('path')
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 
+
 let topMovies = [
      {
         title: "2001: A Space Oddyssey",
@@ -60,6 +61,7 @@ let topMovies = [
 ]
 // Using morgan middleware for making a stream of number of requests with timestamp and id
 app.use(morgan('combined', { stream: accessLogStream}))
+// 
 
 // GET requests
 
