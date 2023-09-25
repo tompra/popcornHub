@@ -6,6 +6,8 @@ const morgan = require('morgan')
 const fs = require('fs')
 const path = require('path')
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
+const bodyParser = require('body-parser')
+const uuid = require('uuid')
 
 
 let topMovies = [
@@ -64,7 +66,6 @@ app.use(morgan('combined', { stream: accessLogStream}))
 // 
 
 // GET requests
-
 // Retrieving static files
 app.use(express.static('public'))
 
