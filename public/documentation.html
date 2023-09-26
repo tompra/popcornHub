@@ -7,25 +7,113 @@
     <title>PopcornHub | Documentation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <h1>Documentation</h1>
-    <table>
+    <h1>PopcornHub</h1>
+    <h2>Documentation</h2>
+    <p>Welcome to the PopcornHub documentation. This guid will help you intereact with our movie-related data.</p>
+
+    <table class="table table-striped">
         <thead>
-            <th>Request</th>
-            <th>URL</th>
-            <th>HTTP Method</th>
-            <th>Request Data Format</th>
-            <th>Response Data Body Format</th>
+            <th scope="col">Request</th>
+            <th scope="col">URL</th>
+            <th scope="col">HTTP Method</th>
+            <th scope="col">Request Data Format</th>
+            <th scope="col">Response Data Body Format</th>
         </thead>
         <tbody>
-            <td>For request</td>
-            <td>For URL</td>
-            <td>For HTTP</td>
-            <td>For data format</td>
-            <td>For data Body format</td>
+            <!-- All movies -->
+            <tr>
+                <td>All movies</td>
+                <td>'/movies'</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object holding data of all movies</td>
+            </tr>
+
+            <!-- By title -->
+            <tr>
+                <td>Description of a specific movie</td>
+                <td>'/movies/:title'</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object holding data about a single movie by title</td>
+            </tr>
+
+            <!-- By Genre -->
+            <tr>
+                <td>Description of a movie by genre's name</td>
+                <td>'movies/genre/:genreName'</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object holding data about a genre by title</td>
+            </tr>
+
+            <!-- By director name -->
+            <tr>
+                <td>Description of a director's name</td>
+                <td>'movies/directors/:directorsName'</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object holding data about the directors bio</td>
+            </tr>
+
+            <!-- User registration -->
+            <tr>
+                <td>Add a new user</td>
+                <td>'/users'</td>
+                <td>POST</td>
+                <td>A JSON object holding data about the user to add</td>
+                <td>A JSON object holding data about the user that was added, including an ID</td>
+            </tr>
+
+            <!-- Update user information -->
+            <tr>
+                <td>Update user's info</td>
+                <td>'/users/:id'</td>
+                <td>PUT</td>
+                <td>None</td>
+                <td>A message indicating the user's, username, password, email and date of birth was updated.</td>
+            </tr>
+
+            <!-- Users add movie to favorite list -->
+            <tr>
+                <td>Users add movie to favorite list</td>
+                <td>'users/:id/favoriteList/:addFavoriteTitle'</td>
+                <td>POST</td>
+                <td>A JSON object holding data about the movie to add into the user's favorite list</td>
+                <td>A JSON object holding data about the movie that was added, including an ID</td>
+            </tr>
+
+            <!-- Users remove movie from favorite list -->
+            <tr>
+                <td>Users delete movie from favorite list</td>
+                <td class="text-bg-warning text-danger-emphasis">'users/:id/favoriteList/:removeFavoriteTitle'</td>
+                <td>DELETE</td>
+                <td>None</td>
+                <td>A message indicating the user's favorite movie was deleted</td>
+            </tr>
+
+            <!-- Users deregister -->
+            <tr>
+                <td>Users deregistration</td>
+                <td>'users/:id'</td>
+                <td>DELETE</td>
+                <td>None</td>
+                <td>A message indicating the user's deregistration</td>
+            </tr>
+
+            <!-- Optional extra features -->
+            <!--  -->
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
         </tbody>
     </table>
 </body>

@@ -1,13 +1,13 @@
 
 const express = require('express')
 const app = express()
-const port = 8000
 const morgan = require('morgan')
 const fs = require('fs')
 const path = require('path')
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 const bodyParser = require('body-parser')
 const uuid = require('uuid')
+const port = 8000
 
 
 let topMovies = [
@@ -73,10 +73,16 @@ app.use(express.static('public'))
 app.get('/', (req, res) =>{
     res.send(`<h1> Welcome to PopcornHub! </h1>`)
 })
-
+// Get all movies
 app.get('/movies', (req, res) =>{
-    res.json(topMovies)
+    res.status(200).json(topMovies)
 })
+
+
+
+
+
+
 // Error handlings for every request. It must go at the very end
 app.use((err, req, res, next) =>{
     console.error(err.stack)
