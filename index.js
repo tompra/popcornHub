@@ -11,7 +11,7 @@ const port = 8000
 
 let users = [
     {
-        userName : 'DFang',
+        name : 'DFang',
         password: '123456',
         email: 'dfang@mail.co',
         birthDate: '12-12-1990',
@@ -19,7 +19,7 @@ let users = [
         id: 1
     },
     {
-        userName : 'Kris',
+        name : 'Kris',
         password: '123456',
         email: 'tunrs@mail.co',
         birthDate: '12-01-1991',
@@ -193,7 +193,7 @@ app.get('/movies/director/:directorsName', (req,res) =>{
 app.post('/users', (req, res) =>{
     let newUser = req.body
 
-    if(!newUser.userName){
+    if(!newUser.name){
         res.status(400).send('Missing name in request body')
     }else{
         newUser.id = uuid.v4()
@@ -209,10 +209,12 @@ app.put('/users/:id', (req,res) =>{
     
     //Find the user first
     let user = users.find((user) => user.id == id)
+    console.log('id', id)
+    console.log('updateUser', updateUser)
 
     //Change name of user
     if(user){
-        user.userName = updateUser.name
+        user.name = updateUser.name
         res.status(200).json(user)
     }else{
         res.status(400).send('No user found')
