@@ -26,7 +26,7 @@
             <!-- All movies -->
             <tr>
                 <td>All movies</td>
-                <td>'/movies'</td>
+                <td class="text-bg-warning text-danger-emphasis">'/movies'</td>
                 <td>GET</td>
                 <td>None</td>
                 <td>A JSON object holding data of all movies</td>
@@ -35,7 +35,7 @@
             <!-- By title -->
             <tr>
                 <td>Description of a specific movie</td>
-                <td>'/movies/:title'</td>
+                <td class="text-bg-warning text-danger-emphasis">'/movies/:title'</td>
                 <td>GET</td>
                 <td>None</td>
                 <td>A JSON object holding data about a single movie by title</td>
@@ -44,7 +44,7 @@
             <!-- By Genre -->
             <tr>
                 <td>Description of a movie by genre's name</td>
-                <td>'movies/genre/:genreName'</td>
+                <td class="text-bg-warning text-danger-emphasis">'movies/genre/:genreName'</td>
                 <td>GET</td>
                 <td>None</td>
                 <td>A JSON object holding data about a genre by title</td>
@@ -53,7 +53,7 @@
             <!-- By director name -->
             <tr>
                 <td>Description of a director's name</td>
-                <td>'movies/directors/:directorsName'</td>
+                <td class="text-bg-warning text-danger-emphasis">'movies/directors/:directorsName'</td>
                 <td>GET</td>
                 <td>None</td>
                 <td>A JSON object holding data about the directors bio</td>
@@ -62,7 +62,7 @@
             <!-- User registration -->
             <tr>
                 <td>Add a new user</td>
-                <td>'/users'</td>
+                <td class="text-bg-warning text-danger-emphasis">'/users'</td>
                 <td>POST</td>
                 <td>A JSON object holding data about the user to add</td>
                 <td>A JSON object holding data about the user that was added, including an ID</td>
@@ -71,7 +71,7 @@
             <!-- Update user information -->
             <tr>
                 <td>Update user's info</td>
-                <td>'/users/:id'</td>
+                <td class="text-bg-warning text-danger-emphasis">'/users/:id'</td>
                 <td>PUT</td>
                 <td>None</td>
                 <td>A message indicating the user's, username, password, email and date of birth was updated.</td>
@@ -80,7 +80,7 @@
             <!-- Users add movie to favorite list -->
             <tr>
                 <td>Users add movie to favorite list</td>
-                <td>'users/:id/favoriteList/:addFavoriteTitle'</td>
+                <td class="text-bg-warning text-danger-emphasis">'users/:id/:addFavoriteTitle'</td>
                 <td>POST</td>
                 <td>A JSON object holding data about the movie to add into the user's favorite list</td>
                 <td>A JSON object holding data about the movie that was added, including an ID</td>
@@ -89,7 +89,7 @@
             <!-- Users remove movie from favorite list -->
             <tr>
                 <td>Users delete movie from favorite list</td>
-                <td class="text-bg-warning text-danger-emphasis">'users/:id/favoriteList/:removeFavoriteTitle'</td>
+                <td class="text-bg-warning text-danger-emphasis">'users/:id/:removeFavoriteTitle'</td>
                 <td>DELETE</td>
                 <td>None</td>
                 <td>A message indicating the user's favorite movie was deleted</td>
@@ -98,15 +98,11 @@
             <!-- Users deregister -->
             <tr>
                 <td>Users deregistration</td>
-                <td>'users/:id'</td>
+                <td class="text-bg-warning text-danger-emphasis">'users/:id'</td>
                 <td>DELETE</td>
                 <td>None</td>
                 <td>A message indicating the user's deregistration</td>
             </tr>
-
-            <!-- Optional extra features -->
-            <!-- Actors play in movies -->
-
 
         </tbody>
     </table>
