@@ -7,9 +7,11 @@ let movieSchema = mongoose.Schema({
         Name: String,
         Description: String
     },
-    Director:{
+    Directors:{
         Name: String,
         Bio: String,
+        Birth: Date,
+        Death: Date
     },
     Actors: [String],
     ImagePath: String,
@@ -21,7 +23,7 @@ let userSchema = mongoose.Schema({
     Password: {type: String, required: true},
     Email: {type: String, required: true},
     Birthday: Date,
-    FavoriteMovies:({type: mongoose.Schema.Types.ObjectId, ref: 'Movie'})
+    FavoriteMovies:[{type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
 })
 
 let Movie = mongoose.model('Movie', movieSchema)
