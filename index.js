@@ -1,4 +1,3 @@
-
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
@@ -7,6 +6,10 @@ const path = require('path')
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 const bodyParser = require('body-parser')
 const uuid = require('uuid')
+const mongoose = require('mongoose')
+const Models = require('./models.js')
+const Movies = Models.Movie;
+const Users = Models.User
 const port = 8000
 
 let users = [
@@ -138,13 +141,17 @@ let topMovies = [
         id: 9
     },
 ]
-// Using morgan middleware for making a stream of number of requests with timestamp and id
-app.use(morgan('combined', { stream: accessLogStream}))
 // Using body parser to parse the body request of incominng HTTP requests
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// Using morgan middleware for making a stream of number of requests with timestamp and id
+app.use(morgan('combined', { stream: accessLogStream}))
+
+//Connect the database 
+mongoose.connect('mongodb://localhost:27017/movies', { useNewUrlParser: true, useUnifiedTopology: true});
 
 
-// GET requests
 // Retrieving static files
 app.use(express.static('public'))
 
@@ -189,17 +196,51 @@ app.get('/movies/director/:directorsName', (req,res) =>{
         res.status(400).send('Cannot find director')
 })
 
-// Add new user
-app.post('/users', (req, res) =>{
-    let newUser = req.body
 
-    if(!newUser.name){
-        res.status(400).send('Missing name in request body')
-    }else{
-        newUser.id = uuid.v4()
-        users.push(newUser);
-        res.status(201).send(newUser)
-    }
+//Get a user by username
+app.get('/users/:Username', async(req, res) =>{
+    await Users.findOne({ Username: req.params.Username})
+        .then((user) =>{
+            res.json(user)
+        })
+        .catch((err) => {
+            console.error(err)
+            res.status(500).send(`Error getting Username: ${err}`)
+        })
+})
+
+
+// Add new user
+app.post('/users', async (req, res) =>{
+    // let newUser = req.body
+
+    // if(!newUser.name){
+    //     res.status(400).send('Missing name in request body')
+    // }else{
+    //     newUser.id = uuid.v4()
+    //     users.push(newUser);
+    //     res.status(201).send(newUser)
+    // }
+     await Users.findOne({ Username: req.body.Username })
+        .then((user) => {
+            if(user){
+                return res.status(400).send(`${req.body.Username} already exists.`)
+            }else{
+                Users.create({
+                    Username: req.body.Username,
+                    Password: req.body.Password,
+                    Email: req.body.Email,
+                    Birthday: req.body.Birthday
+                }).then((user) => res.status(201).json(user))
+                .catch((err) => {
+                    console.error(err)
+                    res.status(500).send(`Error: ${err}`)
+                })
+            }
+        }).catch((err) => {
+            console.error(err)
+            res.status(500).send(`Error: ${err}`)
+        })
 })
 
 // Update user information
@@ -219,6 +260,7 @@ app.put('/users/:id', (req,res) =>{
     }else{
         res.status(400).send('No user found')
     }
+   
 
 })
 
@@ -279,6 +321,8 @@ app.use((err, req, res, next) =>{
     console.error(err.stack)
     res.status(500).send('Something is wrong!')
 })
+
+
 
 // Calling the server
 app.listen(port, ()=>{
