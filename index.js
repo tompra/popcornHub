@@ -24,12 +24,10 @@ mongoose.connect('mongodb://localhost:27017/popcornhub', { useNewUrlParser: true
 
 
 // Retrieving static files
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'))
 
 // Getting response for the default endpoint
-app.get('/', (req, res) =>{
-    res.send(`<h1> Welcome to PopcornHub! </h1>`)
-})
+app.get('/', (req, res) =>{})
 // Get all movies
 app.get('/movies', async(req, res) =>{
     await Movies.find()
@@ -92,8 +90,8 @@ app.get('/movies/director/:directorsName', async (req,res) =>{
 
 
 //Get a user by username
-app.get('/users/:Username', async(req, res) =>{
-    await Users.findOne({ Username: req.params.Username})
+app.get('/users/:username', async(req, res) =>{
+    await Users.findOne({ Username: req.params.username})
         .then((user) =>{
             res.json(user)
         })
