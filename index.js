@@ -130,6 +130,7 @@ app.post('/users', async (req, res) =>{
 
 // Update user information
 app.put('/users/:username', async (req,res) =>{
+    let message = `User ${req.params.username} was updated.`
     await Users.findOneAndUpdate({ Username: req.params.username }, { $set: 
         {
             Username: req.body.Username,
@@ -139,7 +140,7 @@ app.put('/users/:username', async (req,res) =>{
         }
     }, { new: true })
         .then((user) =>{
-            res.status(201).json(user)
+            res.status(201).json(message)
         })
         .catch((err) =>{
             console.error(err)
@@ -165,11 +166,12 @@ app.post('/users/:username/movies/:movieID', async (req, res) =>{
 
 // Users remove movie from favorite list
 app.delete('/users/:username/movies/:movieID', async (req,res) =>{
+    let message = `Movie removed from list`
    await Users.findOneAndUpdate({ Username: req.params.username }, {$pull: { FavoriteMovies: req.params.movieID }}, { new: true})
         .then((movie) =>{
             !movie ?
             res.status(400).send(`Movie is not in the list`) :
-            res.json(movie)
+            res.json(message)
         })
         .catch((err) =>{
             console.error(err)

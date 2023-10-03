@@ -7,12 +7,13 @@
     <title>PopcornHub | Documentation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 </head>
 
 <body>
-    <h1>PopcornHub</h1>
-    <h2>Documentation</h2>
-    <p>Welcome to the PopcornHub documentation. This guid will help you intereact with our movie-related data.</p>
+    <h1>PopcornHub API Documentation</h1>
+    <p>Welcome to the PopcornHub documentation. This guide will help you interact with our movie-related data. Allowing
+        users to access information about movies, including details about movies, genres and user interactions.</p>
 
     <table class="table table-striped">
         <thead>
@@ -29,7 +30,37 @@
                 <td class="text-bg-warning text-danger-emphasis">'/movies'</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object holding data of all movies</td>
+                <td>A JSON object holding data of all movies. Example: <br />
+                    <code class="d-block p-2 ">
+                    [ 
+                        { 
+                            "Genre": { 
+                                "Name": "Crime", 
+                                "Description": "Films of this genre generally involve various aspects of crime and its detection. Stylistically, the
+                                    genre may overlap and combine with many other genres, such as drama or gangster film,[1] but also include comedy, and,
+                                    in turn, is divided into many sub-genres, such as mystery, suspense or noir."
+                            }, 
+                            "Actors": [], 
+                            "_id": "65155c26f9f7f66965be184e",
+                            "Title": "Leon", 
+                            "Description": "After her father, step-mother, step-sister and little brother are killed by her father's employers, the
+                            12-year-old daughter of an abject drug dealer manages to take refuge in the apartment of a professional hitman who at
+                            her request teaches her the methods of his job so she can take her revenge on the corrupt DEA agent who ruined her life
+                            by killing her beloved brother",
+                            "Directors": { 
+                                "Name": "Luc Besson", 
+                                "Bio": "Luc Besson spent the first years of his life following his parents, scuba diving instructors, around the world.
+                                    His early life was entirely aquatic. He already showed amazing creativity as a youth, writing early drafts of The Big
+                                    Blue (1988) and The Fifth Element (1997), as an adolescent bored in school", 
+                                "Birth": "1959-03-18T00:00:00.000Z", 
+                                "Death": null 
+                            },
+                            "ImageUrl": "https://www.imdb.com/title/tt0110413/mediaviewer/rm727457281/?ref_=tt_ov_i", 
+                            "Featured": true 
+                        }, ... 
+                    ]
+                    </code>
+                </td>
             </tr>
 
             <!-- By title -->
@@ -38,7 +69,35 @@
                 <td class="text-bg-warning text-danger-emphasis">'/movies/:title'</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object holding data about a single movie by title</td>
+                <td>A JSON object holding data about a single movie by title. Example: <br>
+                    <code>
+                        {
+                            "Genre": {
+                                "Name": "Crime",
+                                "Description": "Films of this genre generally involve various aspects of crime and its detection. Stylistically, the
+                                                genre may overlap and combine with many other genres, such as drama or gangster film,[1] but also include comedy, and,
+                                                in turn, is divided into many sub-genres, such as mystery, suspense or noir."
+                            },
+                            "Directors": {
+                                "Name": "Luc Besson",
+                                "Bio": "Luc Besson spent the first years of his life following his parents, scuba diving instructors, around the world.
+                                        His early life was entirely aquatic. He already showed amazing creativity as a youth, writing early drafts of The Big
+                                        Blue (1988) and The Fifth Element (1997), as an adolescent bored in school",
+                                "Birth": "1970-01-01T00:00:00.000Z",
+                                "Death": null
+                            },
+                            "_id": "651aff18623d3e32b0d2661c",
+                            "Title": "Leon",
+                            "Description": "After her father, step-mother, step-sister and little brother are killed by her father's employers, the
+                            12-year-old daughter of an abject drug dealer manages to take refuge in the apartment of a professional hitman who at
+                            her request teaches her the methods of his job so she can take her revenge on the corrupt DEA agent who ruined her life
+                            by killing her beloved brother",
+                            "ImageUrl": "https://www.imdb.com/title/tt0110413/mediaviewer/rm727457281/?ref_=tt_ov_i",
+                            "Actors": ["Jean Reno","Gary Oldman","Natalie Portman"],
+                            "Featured": true
+                        }
+                    </code>
+                </td>
             </tr>
 
             <!-- By Genre -->
@@ -47,7 +106,16 @@
                 <td class="text-bg-warning text-danger-emphasis">'movies/genre/:genreName'</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object holding data about a genre by title</td>
+                <td>A JSON object holding data about a genre by title. Example: <br>
+                    <code>
+                        {
+                                "Name": "Crime",
+                                "Description": "Films of this genre generally involve various aspects of crime and its detection. Stylistically, the
+                                        genre may overlap and combine with many other genres, such as drama or gangster film,[1] but also include comedy, and,
+                                        in turn, is divided into many sub-genres, such as mystery, suspense or noir."
+                        }
+                    </code>
+                </td>
             </tr>
 
             <!-- By director name -->
@@ -56,7 +124,37 @@
                 <td class="text-bg-warning text-danger-emphasis">'movies/directors/:directorsName'</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object holding data about the directors bio</td>
+                <td>A JSON object holding data about the directors bio. Example: <br>
+                    <code>
+                        {
+                            "Name": "Ridley Scott",
+                            "Bio": "Described by film producer Michael Deeley as \"the very best eye in the business\", director Ridley Scott was
+                                    born on November 30, 1937 in South Shields, Tyne and Wear. His father was an officer in the Royal Engineers and the
+                                    family followed him as his career posted him throughout the United Kingdom and Europe before they eventually returned to
+                                    Teesside.",
+                            "Birth": "1937-11-30T00:00:00.000Z",
+                            "Death": null
+                        }
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td>User by username</td>
+                <td class="text-bg-warning text-danger-emphasis">'users/:username'</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object holding data about the searched user. Example: <br>
+                    <code>
+                        {
+                            "_id": "651b00f0092911baa0e5834f",
+                            "Username": "xand4r",
+                            "Password": "987456123",
+                            "Email": "xander@gmil.com",
+                            "Birthday": "1970-01-01T00:00:00.000Z",
+                            "FavoriteMovies": []
+                        }
+                    </code>
+                </td>
             </tr>
 
             <!-- User registration -->
@@ -64,35 +162,85 @@
                 <td>Add a new user</td>
                 <td class="text-bg-warning text-danger-emphasis">'/users'</td>
                 <td>POST</td>
-                <td>A JSON object holding data about the user to add</td>
-                <td>A JSON object holding data about the user that was added, including an ID</td>
+                <td>A JSON object holding data about the user to add. Example: <br>
+                    <code>
+                        {
+                            "Username": "nik1",
+                            "Password": "12ew56",
+                            "Email": "nik1@gmial.cg",
+                            "Birthday": "1989-09-19"
+                        }
+                    </code>
+                </td>
+                <td>A JSON object holding data about the user that was added, including an ID. Example: <br>
+                    <code>
+                        {
+                            "Username": "nik1",
+                            "Password": "12ew56",
+                            "Email": "nik1@gmial.cg",
+                            "Birthday": "1989-09-19T00:00:00.000Z",
+                            "FavoriteMovies": [],
+                            "_id": "651b101ed217a66520af69a0",
+                            "__v": 0
+                        }
+                    </code>
+                </td>
             </tr>
 
             <!-- Update user information -->
             <tr>
                 <td>Update user's info</td>
-                <td class="text-bg-warning text-danger-emphasis">'/users/:id'</td>
+                <td class="text-bg-warning text-danger-emphasis">'/users/:username'</td>
                 <td>PUT</td>
                 <td>None</td>
-                <td>A message indicating the user's, username, password, email and date of birth was updated.</td>
+                <td>A message indicating the user's, username, password, email and date of birth was updated. Example:
+                    <br>
+                    <code>
+                        `User ${username} was updated.`
+                    </code>
+                </td>
             </tr>
 
             <!-- Users add movie to favorite list -->
             <tr>
                 <td>Users add movie to favorite list</td>
-                <td class="text-bg-warning text-danger-emphasis">'users/:id/:addFavoriteTitle'</td>
+                <td class="text-bg-warning text-danger-emphasis">'users/:username/movies/:movieID'</td>
                 <td>POST</td>
-                <td>A JSON object holding data about the movie to add into the user's favorite list</td>
-                <td>A JSON object holding data about the movie that was added, including an ID</td>
+                <td>A JSON object holding data about the movie to add into the user's favorite list. Example: <br>
+                    <code>
+                        {
+                            "FavoriteMovies": "651aff18623d3e32b0d26625"
+                        }
+                    </code>
+                </td>
+                <td>A JSON object holding data about the movie that was added, including an ID. Example:
+                    <code>
+                        {
+                            "_id": "651b101ed217a66520af69a0",
+                            "Username": "nik1",
+                            "Password": "12ew56",
+                            "Email": "nik1@gmial.cg",
+                            "Birthday": "1989-09-19T00:00:00.000Z",
+                            "FavoriteMovies": [
+                            "651aff18623d3e32b0d26625"
+                            ],
+                            "__v": 0
+                        }
+                    </code>
+                </td>
             </tr>
 
             <!-- Users remove movie from favorite list -->
             <tr>
                 <td>Users delete movie from favorite list</td>
-                <td class="text-bg-warning text-danger-emphasis">'users/:id/:removeFavoriteTitle'</td>
+                <td class="text-bg-warning text-danger-emphasis">'users/:username/movies/:movieID'</td>
                 <td>DELETE</td>
                 <td>None</td>
-                <td>A message indicating the user's favorite movie was deleted</td>
+                <td>A message indicating the user's favorite movie was deleted. Example: <br>
+                    <code>
+                        "Movie removed from list"
+                    </code>
+                </td>
             </tr>
 
             <!-- Users deregister -->
@@ -101,7 +249,11 @@
                 <td class="text-bg-warning text-danger-emphasis">'users/:id'</td>
                 <td>DELETE</td>
                 <td>None</td>
-                <td>A message indicating the user's deregistration</td>
+                <td>A message indicating the user's deregistration. Example: <br>
+                    <code>
+                        `${username} was deleted`
+                    </code>
+                </td>
             </tr>
 
         </tbody>
