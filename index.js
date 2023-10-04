@@ -11,10 +11,12 @@ const Models = require('./models.js')
 const Movies = Models.Movie;
 const Users = Models.User
 const port = 8000
-
 // Using body parser to parse the body request of incominng HTTP requests
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+const auth = require('./auth.js')(app)
+const passport = require('passport')
+require('./passport.js')
 
 // Using morgan middleware for making a stream of number of requests with timestamp and id
 app.use(morgan('combined', { stream: accessLogStream}))
