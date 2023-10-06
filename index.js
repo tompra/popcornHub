@@ -196,13 +196,16 @@ app.delete('/users/:Username', passport.authenticate('jwt', { session: false }),
 })
 
 
+
+
+
+
+
 // Error handlings for every request. It must go at the very end
 app.use((err, req, res, next) =>{
     console.error(err.stack)
     res.status(500).send('Something is wrong!')
 })
-
-
 
 // Calling the server
 app.listen(port, ()=>{
