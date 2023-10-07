@@ -1,5 +1,7 @@
-const baseURL = 'https://api.themoviedb.org/3/'
-import { access_token_auth } from './secret.json';
+const baseURL = 'https://api.themoviedb.org/3/';
+const imagePath = 'https://image.tmdb.org/t/p/w500/';
+const fs = require('fs')
+const { access_token_auth } = require('./secret.json')
 const options = {
   method: 'GET',
   headers: {
@@ -7,60 +9,70 @@ const options = {
     Authorization: access_token_auth
   }
 };
+const totalPages = 100;
 
-// Transform data to apply to the movie schema database
-// Map through the result and push it to the database?
-//   // get movies
-//   Title: result.title,
-//   Description: result.overview,
-//   Genre: {
-//     Name: 'result.name', 
-//     Description: 'not available', 
-//   },
-//   //Get person
-//   Directors: {
-//     Name: 'Director Name', 
-//     Bio: 'not available', 
-//     Birth: not available, 
-//     Death: not available, 
-//   },
-//   Actors: [], 
-//   ImagePath: result.poster_path,
-//   Featured: false, 
-
-// FETCH FOR MOVIES, GENRE and PERSONS
-// FETCH FROM THE x page THE MOST POPULAR MOVIES
-// results retrieve only the x page giving the title, description and images. No actors, directors or genre involve. 
-const getMovies  = async () => {
-   await fetch(`${baseURL}movie/popular?language=en-US&page=1`, options)
-  .then(response => response.json())
-  .then(response => {
-    return console.log(response)
-  })
-  .catch(err => console.error(err));
+const getAllMovieData = async() =>{
+  //Put all data together
+  let allData = []
+  //Fetch for every movie page
+  for(let page = 1; page <= totalPages; page++){
+    const fetchData = await fetch(`${baseURL}movie/top_rated?language=en-US&page=${page}`, options)
+                      .then(response => response.json())
+                      .then(response => mapMoviesArr(response))
+                      .catch(err => console.error(err));
+    //Concatenating all the data into one array
+    allData = allData.concat(fetchData)
+    
+    //Save data
+    const movieData = `movie-data/all-data.json`
+    fs.writeFileSync(movieData, JSON.stringify(allData, null, 2))
+  }
+  console.log('Data fetching and saving completed')
 }
-getMovies()
-
-// FETCH PERSON (ACTORS & DIRECTOR) BY SEARCH (STRING)
-// results for knowing if actor or director: "known_for_department" : "acting or directing"
-// no description available (bio, birth and death)
-// movies made results: 'Known_for"
-const getPersons = async () => {
-  await fetch(`${baseURL}search/person?query=brad%20pitt&include_adult=false&language=en-US&page=1`)
-  .then(response => response.json())
-  .then(response =>{
-    return console.log(response)
-  })
-  .catch(err => console.error(`Error in getting person: ${err}`))
+                      
+async function mapMoviesArr(response){
+    const responseData = response.results;
+    //Keys to filter from response
+    const keysToExtract = ['title', 'id', 'genre_ids', 'overview', 'poster_path', 'release_date', 'vote_average']
+    //Array to store all the movies objects
+    const mappedDataArray = []
+    //Calling the getGenres to fetch the genres array
+    const genresArr = await getGenres()
+    //Loop inside of the array
+    for(const movieObjects of responseData){
+      //Empty object to for the mapped information extraction
+      const mappedMovies = {}
+      //Loop inside of the objects
+      for(const key of keysToExtract){
+        //adding to the image the complete path to render the images
+        if(key === 'poster_path'){
+          if(movieObjects[key] !== undefined){
+            mappedMovies[key] = `${imagePath}${movieObjects[key]}`
+          }
+        }else if(key === 'genre_ids'){
+         mappedMovies[key] = movieObjects[key].map(genreID => {
+            const genre = genresArr.find(genre => genre.id === genreID)
+            return genre ? genre.name : ''
+         })
+        }
+        else{
+          if(movieObjects[key] !== undefined){
+            mappedMovies[key] = movieObjects[key]
+          }
+        }
+      }
+      mappedDataArray.push(mappedMovies)
+    }
+    return mappedDataArray
 }
-// getPersons()
 
-// FETCH GENRE ALL AVAILABLE
-// results retrieve only name and id no description
-const getGenres = async () => {
-  await fetch(`${baseURL}genre/movie/list?language=en`)
-  .then((response) => response.json())
-  .then((response) => console.log(response))
-  .catch((err) => console.error(`Error in getting genres: ${err}`))
+const getGenres = async() => {
+  const fetchGenres = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
+        .then(response => response.json())
+        .then(response => response.genres)
+        .catch(err => console.error(err));
+  return fetchGenres
 }
-// getGenres()
+
+getGenres()
+getAllMovieData();

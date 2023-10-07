@@ -11,6 +11,7 @@ const Models = require('./models.js')
 const Movies = Models.Movie;
 const Users = Models.User
 const port = 8000
+
 // Using body parser to parse the body request of incominng HTTP requests
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -194,12 +195,6 @@ app.delete('/users/:Username', passport.authenticate('jwt', { session: false }),
             res.status(500).send(`Error in deleting user: ${err}`)
         })
 })
-
-
-
-
-
-
 
 // Error handlings for every request. It must go at the very end
 app.use((err, req, res, next) =>{
