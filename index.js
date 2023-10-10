@@ -40,7 +40,7 @@ mongoose.connect('mongodb://localhost:27017/popcornhub', { useNewUrlParser: true
 app.use(express.static(path.join(__dirname +'public')))
 
 // Getting response for the default endpoint
-// app.get('/', (req, res) =>{})
+app.get('/', (req, res) =>{})
 // Get all movies
 app.get('/movies', passport.authenticate('jwt', { session: false }), async(req, res) =>{
     await Movies.find()
