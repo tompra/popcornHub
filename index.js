@@ -12,10 +12,6 @@ const Movies = Models.Movie;
 const Users = Models.User
 const cors = require('cors')
 const port = 8000
-
-// Using body parser to parse the body request of incominng HTTP requests
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
 let allowedOrigins = [`http://localhost:${port}`, 'http://testsite.com']
 app.use(cors({
     origin: (origin, callback) => {
@@ -27,7 +23,9 @@ app.use(cors({
         return callback(null,true)
     }
 }))
-
+// Using body parser to parse the body request of incominng HTTP requests
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 const auth = require('./auth.js')(app)
 const passport = require('passport')
 require('./passport.js')
@@ -118,7 +116,8 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }) ,as
 
 
 // Add new user
-app.post('/users', async (req, res) =>{
+app.post('/users', async (req, res) => {
+     let hashedPassword = Users.hashedPassword(req.body.Password)
      await Users.findOne({ Username: req.body.Username })
         .then((user) => {
             if(user){
@@ -126,7 +125,7 @@ app.post('/users', async (req, res) =>{
             }else{
                 Users.create({
                     Username: req.body.Username,
-                    Password: req.body.Password,
+                    Password: hashedPassword,
                     Email: req.body.Email,
                     Birthday: req.body.Birthday
                 }).then((user) => res.status(201).json(user))
