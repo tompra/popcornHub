@@ -10,7 +10,7 @@ const mongoose = require('mongoose')
 const { User, Movie } = require('./models.js')
 const cors = require('cors')
 const PORT = process.env.PORT || 8000
-const { CONNECTION_URI_LOCAL } = require('./secret.json')
+// const { CONNECTION_URI_LOCAL } = require('./secret.json')
 let allowedOrigins = [`http://localhost:8000`, 'https://popcornhub-api.onrender.com/']
 app.use(cors({
     origin: (origin, callback) => {
@@ -34,7 +34,7 @@ const { check, validationResult } = require('express-validator')
 app.use(morgan('combined', { stream: accessLogStream}))
 
 //Connect the database 
-mongoose.connect(process.env.CONNECTION_URI || CONNECTION_URI_LOCAL, { useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.CONNECTION_URI , { useNewUrlParser: true, useUnifiedTopology: true});
 
 // Retrieving static files
 app.use(express.static('public'))

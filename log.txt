@@ -657,3 +657,8 @@
 127.0.0.1 - - [10/Oct/2023:13:56:38 +0000] "GET /img/favicon.ico HTTP/1.1" 200 15406 "http://localhost:8000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
 127.0.0.1 - - [10/Oct/2023:14:07:21 +0000] "POST /users HTTP/1.1" 201 220 "-" "PostmanRuntime/7.33.0"
 127.0.0.1 - - [10/Oct/2023:14:08:00 +0000] "POST /users HTTP/1.1" 422 253 "-" "PostmanRuntime/7.33.0"
+127.0.0.1 - - [10/Oct/2023:14:10:50 +0000] "GET /movies HTTP/1.1" 201 2 "-" "PostmanRuntime/7.33.0"
+127.0.0.1 - - [10/Oct/2023:14:17:59 +0000] "GET /movies HTTP/1.1" 201 14540 "-" "PostmanRuntime/7.33.0"
+127.0.0.1 - - [10/Oct/2023:14:18:49 +0000] "GET /movies/Alien HTTP/1.1" 201 1591 "-" "PostmanRuntime/7.33.0"
+127.0.0.1 - - [10/Oct/2023:14:19:20 +0000] "GET /movies/genre/Action HTTP/1.1" 201 421 "-" "PostmanRuntime/7.33.0"
+127.0.0.1 - - [10/Oct/2023:14:19:47 +0000] "GET /movies/director/Luc%20Besson HTTP/1.1" 201 382 "-" "PostmanRuntime/7.33.0"
