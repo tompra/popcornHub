@@ -10,7 +10,7 @@ const mongoose = require('mongoose')
 const { Movies, Users } = require('./models.js')
 const cors = require('cors')
 const PORT = process.env.PORT || 8000
-let allowedOrigins = [`http://localhost:8000`, 'https://popcornhub-364ba26f4889.herokuapp.com/', 'https://popcornhub-api-903fb686e135.herokuapp.com/']
+let allowedOrigins = [`http://localhost:8000`, 'https://popcornhub-364ba26f4889.herokuapp.com/', 'https://popcornhub-api-903fb686e135.herokuapp.com/', 'https://popcornhub-api.onrender.com/']
 
 app.use(cors({
     origin: (origin, callback) => {
@@ -37,7 +37,7 @@ app.use(morgan('combined', { stream: accessLogStream}))
 mongoose.connect('mongodb://localhost:27017/popcornhub', { useNewUrlParser: true, useUnifiedTopology: true});
 
 // Retrieving static files
-app.use(express.static(path.join(__dirname +'public')))
+app.use(express.static('public'))
 
 // Getting response for the default endpoint
 app.get('/', (req, res) =>{})
