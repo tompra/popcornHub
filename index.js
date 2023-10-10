@@ -1,16 +1,14 @@
-const express = require('express')
-const app = express()
-const morgan = require('morgan')
-const fs = require('fs')
-const path = require('path')
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
-const bodyParser = require('body-parser')
-const uuid = require('uuid')
-const mongoose = require('mongoose')
-const { User, Movie } = require('./models.js')
-const cors = require('cors')
-const PORT = process.env.PORT || 8000
-// const { CONNECTION_URI_LOCAL } = require('./secret.json')
+const express = require('express'),
+        app = express(),
+        morgan = require('morgan'),
+        fs = require('fs'),
+        path = require('path'),
+        accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'}),
+        bodyParser = require('body-parser'),
+        mongoose = require('mongoose'),
+        { User, Movie } = require('./models.js'),
+        cors = require('cors'),
+        PORT = process.env.PORT || 8000
 let allowedOrigins = [`http://localhost:8000`, 'https://popcornhub-api.onrender.com/']
 app.use(cors({
     origin: (origin, callback) => {
@@ -25,8 +23,8 @@ app.use(cors({
 // Using body parser to parse the body request of incominng HTTP requests
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-const auth = require('./auth.js')(app)
-const passport = require('passport')
+const auth = require('./auth.js')(app),
+passport = require('passport')
 require('./passport.js')
 const { check, validationResult } = require('express-validator')
 
@@ -34,7 +32,7 @@ const { check, validationResult } = require('express-validator')
 app.use(morgan('combined', { stream: accessLogStream}))
 
 //Connect the database 
-mongoose.connect(process.env.CONNECTION_URI , { useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true});
 
 // Retrieving static files
 app.use(express.static('public'))
