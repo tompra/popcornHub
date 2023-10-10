@@ -10,18 +10,18 @@ const mongoose = require('mongoose')
 const { Movies, Users } = require('./models.js')
 const cors = require('cors')
 const PORT = process.env.PORT || 8000
-let allowedOrigins = [`http://localhost:8000`, 'https://popcornhub-e2c1a81fc635.herokuapp.com/']
+// let allowedOrigins = [`http://localhost:8000`, 'https://popcornhub-e2c1a81fc635.herokuapp.com/']
 
-app.use(cors({
-    origin: (origin, callback) => {
-        if(!origin) return callback(null, true);
-        if(allowedOrigins.indexOf(origin) === -1){
-            let message = `The CORS policy for this applicaiton doesn't allow access from origin ${origin}`
-            return callback(new Error(message), false)
-        }
-        return callback(null,true)
-    }
-}))
+// app.use(cors({
+//     origin: (origin, callback) => {
+//         if(!origin) return callback(null, true);
+//         if(allowedOrigins.indexOf(origin) === -1){
+//             let message = `The CORS policy for this applicaiton doesn't allow access from origin ${origin}`
+//             return callback(new Error(message), false)
+//         }
+//         return callback(null,true)
+//     }
+// }))
 // Using body parser to parse the body request of incominng HTTP requests
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -40,7 +40,7 @@ mongoose.connect('mongodb://localhost:27017/popcornhub', { useNewUrlParser: true
 app.use(express.static('public'))
 
 // Getting response for the default endpoint
-app.get('/', (req, res) =>{})
+// app.get('/', (req, res) =>{})
 // Get all movies
 app.get('/movies', passport.authenticate('jwt', { session: false }), async(req, res) =>{
     await Movies.find()
