@@ -1,4 +1,7 @@
 node_modules
 secret.json
 movie-data
+users.json
+movies.json
+
 
