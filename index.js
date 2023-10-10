@@ -38,7 +38,7 @@ app.use(morgan('combined', { stream: accessLogStream}))
 mongoose.connect('mongodb://localhost:27017/popcornhub', { useNewUrlParser: true, useUnifiedTopology: true});
 
 // Retrieving static files
-app.use(express.static(__dirname + '/public'))
+app.use(express.static('public'))
 
 // Getting response for the default endpoint
 app.get('/', (req, res) =>{})
