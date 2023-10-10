@@ -122,7 +122,6 @@ app.post('/users', [
     check('Password', 'Password is required').notEmpty().withMessage('Password is required'),
     check('Password', 'Password must be at at least 8 characters long').isLength({min: 8}),
     check('Email', 'Email does not appear to be valid').trim().isEmail(),
-    check('Birthday','Must be a valid date').trim().isDate()
 ], async (req, res) => {
      // check the validation object for erros
      let errors = validationResult(req);
@@ -160,7 +159,6 @@ app.put('/users/:Username', [
     check('Password', 'Password is required').notEmpty().withMessage('Password is required'),
     check('Password', 'Password must be at at least 8 characters long').isLength({min: 8}),
     check('Email', 'Email does not appear to be valid').trim().isEmail(),
-    check('Birthday','Must be a valid date').trim().isDate()
    ], passport.authenticate('jwt', { session: false} ), async (req,res) => {
     //handle errors of validation
     let errors = validationResult(req)
