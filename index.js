@@ -12,7 +12,7 @@ const Movies = Models.Movie;
 const Users = Models.User
 const cors = require('cors')
 const PORT = process.env.PORT || 8000
-let allowedOrigins = [`http://localhost:${port}`, 'http://testsite.com']
+let allowedOrigins = [`http://localhost:${PORT}`, 'https://popcornhub-e2c1a81fc635.herokuapp.com/']
 app.use(cors({
     origin: (origin, callback) => {
         if(!origin) return callback(null, true);
@@ -243,7 +243,7 @@ app.use((err, req, res, next) =>{
 })
 
 // Calling the server
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, () => {
     console.log(`Server is running in port ${PORT}...`)
 })
 
