@@ -10,7 +10,7 @@ const mongoose = require('mongoose')
 const { Movies, Users } = require('./models.js')
 const cors = require('cors')
 const PORT = process.env.PORT || 8000
-let allowedOrigins = [`http://localhost:8000`, 'https://popcornhub-e2c1a81fc635.herokuapp.com/', 'https://popcornhub-api-903fb686e135.herokuapp.com/']
+let allowedOrigins = [`http://localhost:8000`, 'https://popcornhub-364ba26f4889.herokuapp.com/', 'https://popcornhub-api-903fb686e135.herokuapp.com/']
 
 app.use(cors({
     origin: (origin, callback) => {
