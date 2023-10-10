@@ -10,7 +10,7 @@ const mongoose = require('mongoose')
 const { Movies, Users } = require('./models.js')
 const cors = require('cors')
 const PORT = process.env.PORT || 8000
-let allowedOrigins = [`http://localhost:8000`, 'https://popcornhub-364ba26f4889.herokuapp.com/', 'https://popcornhub-api-903fb686e135.herokuapp.com/', 'https://popcornhub-api.onrender.com/']
+let allowedOrigins = [`http://localhost:8000`, 'https://popcornhub-api.onrender.com/']
 
 app.use(cors({
     origin: (origin, callback) => {
@@ -119,9 +119,9 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }) ,as
 app.post('/users', [ 
     check('Username', 'Username is required').isLength({min: 5}).withMessage('User should be at least 5 characters long'),
     check('Username', 'Username contains non alphanumeric characters - not allowed').isAlphanumeric(),
-    check('Password', 'Password is required').notEmpty().withMessage('Password is required'),
+    check('Password', 'Password is required').not().isEmpty().withMessage('Password is required'),
     check('Password', 'Password must be at at least 8 characters long').isLength({min: 8}),
-    check('Email', 'Email does not appear to be valid').trim().isEmail(),
+    check('Email', 'Email does not appear to be valid').isEmail(),
 ], async (req, res) => {
      // check the validation object for erros
      let errors = validationResult(req);
@@ -129,7 +129,7 @@ app.post('/users', [
         //status code 422 - unprocessable content
         return res.status(422).json({errors: errors.array()})
      }
-     let hashedPassword = Users.hashedPassword(req.body.Password)
+     let hashedPassword = Users.hashPassword(req.body.Password)
      await Users.findOne({ Username: req.body.Username })
         .then((user) => {
             if(user){
