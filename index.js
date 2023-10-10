@@ -29,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 const auth = require('./auth.js')(app)
 const passport = require('passport')
 require('./passport.js')
+const { check, validationResult } = require('express-validator')
 
 // Using morgan middleware for making a stream of number of requests with timestamp and id
 app.use(morgan('combined', { stream: accessLogStream}))
@@ -116,7 +117,20 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }) ,as
 
 
 // Add new user
-app.post('/users', async (req, res) => {
+app.post('/users', [ 
+    check('Username', 'Username is required').isLength({min: 5}).withMessage('User should be at least 5 characters long'),
+    check('Username', 'Username contains non alphanumeric characters - not allowed').isAlphanumeric(),
+    check('Password', 'Password is required').notEmpty().withMessage('Password is required'),
+    check('Password', 'Password must be at at least 8 characters long').isLength({min: 8}),
+    check('Email', 'Email does not appear to be valid').trim().isEmail(),
+    check('Birthday','Must be a valid date').trim().isDate()
+], async (req, res) => {
+     // check the validation object for erros
+     let errors = validationResult(req);
+     if(!errors.isEmpty()){
+        //status code 422 - unprocessable content
+        return res.status(422).json({errors: errors.array()})
+     }
      let hashedPassword = Users.hashedPassword(req.body.Password)
      await Users.findOne({ Username: req.body.Username })
         .then((user) => {
@@ -141,7 +155,21 @@ app.post('/users', async (req, res) => {
 })
 
 // Update user information
-app.put('/users/:Username', passport.authenticate('jwt', { session: false} ), async (req,res) => {
+app.put('/users/:Username', [
+    check('Username', 'Username is required').isLength({min: 5}).withMessage('User should be at least 5 characters long'),
+    check('Username', 'Username contains non alphanumeric characters - not allowed').isAlphanumeric(),
+    check('Password', 'Password is required').notEmpty().withMessage('Password is required'),
+    check('Password', 'Password must be at at least 8 characters long').isLength({min: 8}),
+    check('Email', 'Email does not appear to be valid').trim().isEmail(),
+    check('Birthday','Must be a valid date').trim().isDate()
+   ], passport.authenticate('jwt', { session: false} ), async (req,res) => {
+    //handle errors of validation
+    let errors = validationResult(req)
+    if(!errors.isEmpty()){
+        //status code 422 - unprocessable content
+        return res.status(422).json({errors: errors.array()})
+    }
+
     let message = `User ${req.params.Username} was updated.`
     if(req.user.Username !== req.params.Username){
         return res.status(400).send('Permission denied');
