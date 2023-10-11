@@ -75,30 +75,30 @@
                         <li class="list-group-item">Response Body: A JSON object holding data of all movies. Example:
                             <code class="d-flex justify-content-start">
             [ 
-                { 
-                    "Genre": { 
-                        "Name": "Crime", 
-                        "Description": "Films of this genre generally involve various aspects of crime and its detection. Stylistically, the
+                {
+                    "genre": {
+                        "description": "Films of this genre generally involve various aspects of crime and its detection. Stylistically, the
                             genre may overlap and combine with many other genres, such as drama or gangster film,[1] but also include comedy, and,
-                            in turn, is divided into many sub-genres, such as mystery, suspense or noir."
-                        }, 
-                    "Actors": [], 
-                    "_id": "65155c26f9f7f66965be184e",
-                    "Title": "Leon", 
-                    "Description": "After her father, step-mother, step-sister and little brother are killed by her father's employers, the
-                    12-year-old daughter of an abject drug dealer manages to take refuge in the apartment of a professional hitman who at
-                    her request teaches her the methods of his job so she can take her revenge on the corrupt DEA agent who ruined her life
-                    by killing her beloved brother",
-                    "Directors": { 
-                        "Name": "Luc Besson", 
-                        "Bio": "Luc Besson spent the first years of his life following his parents, scuba diving instructors, around the world.
-                            His early life was entirely aquatic. He already showed amazing creativity as a youth, writing early drafts of The Big
-                            Blue (1988) and The Fifth Element (1997), as an adolescent bored in school", 
-                        "Birth": "1959-03-18T00:00:00.000Z", 
-                        "Death": null 
+                            in turn, is divided into many sub-genres, such as mystery, suspense or noir.",
+                        "name": "Crime"
                     },
-                    "ImageUrl": "https://www.imdb.com/title/tt0110413/mediaviewer/rm727457281/?ref_=tt_ov_i", 
-                    "Featured": true 
+                    "director": {
+                        "name": "Luc Besson",
+                        "bio": "Luc Besson spent the first years of his life following his parents, scuba diving instructors, around the world.
+                            His early life was entirely aquatic. He already showed amazing creativity as a youth, writing early drafts of The Big
+                            Blue (1988) and The Fifth Element (1997), as an adolescent bored in school",
+                        "birth": "1970-01-01T00:00:00.000Z",
+                        "death": null
+                    },
+                    "_id": "651aff18623d3e32b0d2661c",
+                    "description": "After her father, step-mother, step-sister and little brother are killed by her father's employers, the
+                            12-year-old daughter of an abject drug dealer manages to take refuge in the apartment of a professional hitman who at
+                            her request teaches her the methods of his job so she can take her revenge on the corrupt DEA agent who ruined her life
+                            by killing her beloved brother",
+                    "title": "Leon",
+                    "actors": [ "Jean Reno","Gary Oldman","Natalie Portman"],
+                    "featured": true,
+                    "imageUrl": "https://www.imdb.com/title/tt0110413/mediaviewer/rm727457281/?ref_=tt_ov_i"
                 }, ... 
             ]
                     </code>
@@ -115,7 +115,7 @@
                     <p>
                         <span class="badge text-bg-success fs-6">GET</span>
                         -
-                        <span class="badge text-bg-warning fs-6">/movies/:title</span>
+                        <span class="badge text-bg-warning fs-6">/movies/{title}</span>
                     </p>
                     <h3>Description</h3>
                     <p>Retrieve detailed information about a specific movie by title.</p>
@@ -131,29 +131,29 @@
                             Example:
                             <code class="d-flex justify-content-start">
         {
-            "Genre": {
-                "Name": "Crime",
-                "Description": "Films of this genre generally involve various aspects of crime and its detection. Stylistically, the
+            "genre": {
+                "description": "Films of this genre generally involve various aspects of crime and its detection. Stylistically, the
                     genre may overlap and combine with many other genres, such as drama or gangster film,[1] but also include comedy, and,
-                    in turn, is divided into many sub-genres, such as mystery, suspense or noir."
-            },
-            "Directors": {
-                "Name": "Luc Besson",
-                "Bio": "Luc Besson spent the first years of his life following his parents, scuba diving instructors, around the world.
-                    His early life was entirely aquatic. He already showed amazing creativity as a youth, writing early drafts of The Big
-                    Blue (1988) and The Fifth Element (1997), as an adolescent bored in school",
-                "Birth": "1970-01-01T00:00:00.000Z",
-                "Death": null
+                    in turn, is divided into many sub-genres, such as mystery, suspense or noir.",
+                "name": "Crime"
+        },
+            "director": {
+                "name": "Luc Besson",
+                "bio": "Luc Besson spent the first years of his life following his parents, scuba diving instructors, around the world.
+                        His early life was entirely aquatic. He already showed amazing creativity as a youth, writing early drafts of The Big
+                        Blue (1988) and The Fifth Element (1997), as an adolescent bored in school",
+                "birth": "1970-01-01T00:00:00.000Z",
+                "death": null
         },
             "_id": "651aff18623d3e32b0d2661c",
-            "Title": "Leon",
-            "Description": "After her father, step-mother, step-sister and little brother are killed by her father's employers, the
-                12-year-old daughter of an abject drug dealer manages to take refuge in the apartment of a professional hitman who at
-                her request teaches her the methods of his job so she can take her revenge on the corrupt DEA agent who ruined her life
-                by killing her beloved brother",
-            "ImageUrl": "https://www.imdb.com/title/tt0110413/mediaviewer/rm727457281/?ref_=tt_ov_i",
-            "Actors": ["Jean Reno","Gary Oldman","Natalie Portman"],
-            "Featured": true
+            "description": "After her father, step-mother, step-sister and little brother are killed by her father's employers, the
+                    12-year-old daughter of an abject drug dealer manages to take refuge in the apartment of a professional hitman who at
+                    her request teaches her the methods of his job so she can take her revenge on the corrupt DEA agent who ruined her life
+                    by killing her beloved brother",
+            "title": "Leon",
+            "actors": [ "Jean Reno","Gary Oldman","Natalie Portman"],
+            "featured": true,
+            "imageUrl": "https://www.imdb.com/title/tt0110413/mediaviewer/rm727457281/?ref_=tt_ov_i"
         }
                         </code>
                         </li>
@@ -168,7 +168,7 @@
                     <p>
                         <span class="badge text-bg-success fs-6">GET</span>
                         -
-                        <span class="badge text-bg-warning fs-6">/movies/genre/:genreName</span>
+                        <span class="badge text-bg-warning fs-6">/movies/genre/{genreName}</span>
                     </p>
                     <h3>Description</h3>
                     <p>Retrieve detailed information about a especific genre by name.</p>
@@ -183,10 +183,10 @@
                         <li class="list-group-item">Response Body: A JSON object holding data of genre by name. Example:
                             <code class="d-flex justify-content-start">
         {
-            "Name": "Crime",
-            "Description": "Films of this genre generally involve various aspects of crime and its detection. Stylistically, the
-                genre may overlap and combine with many other genres, such as drama or gangster film,[1] but also include comedy, and,
-                in turn, is divided into many sub-genres, such as mystery, suspense or noir."
+            "description": "Thriller is a genre of fiction that aims to keep the audience on the edge of their seats through
+                tension, suspense, and unexpected twists. It is characterized by a fast-paced plot that revolves around a dangerous or
+                suspenseful situation, often with a central character facing an imminent threat or danger.",
+            "name": "Thriller"
         }
                         </code>
                         </li>
@@ -216,13 +216,13 @@
                         <li class="list-group-item">Response Body: A JSON object holding data of genre by name. Example:
                             <code class="d-flex justify-content-start">
         {
-            "Name": "Ridley Scott",
-            "Bio": "Described by film producer Michael Deeley as \"the very best eye in the business\", director Ridley Scott was
+            "name": "Ridley Scott",
+            "bio": "Described by film producer Michael Deeley as \"the very best eye in the business\", director Ridley Scott was
                     born on November 30, 1937 in South Shields, Tyne and Wear. His father was an officer in the Royal Engineers and the
                     family followed him as his career posted him throughout the United Kingdom and Europe before they eventually returned to
                     Teesside.",
-            "Birth": "1937-11-30T00:00:00.000Z",
-            "Death": null
+            "birth": "1937-11-30T00:00:00.000Z",
+            "death": null
         }
                             </code>
                         </li>
@@ -237,7 +237,7 @@
                     <p>
                         <span class="badge text-bg-success fs-6">GET</span>
                         -
-                        <span class="badge text-bg-warning fs-6">/users/:username</span>
+                        <span class="badge text-bg-warning fs-6">/users/{username}</span>
                     </p>
                     <h3>Description</h3>
                     <p>Retrieve detailed information about a especific user by name.</p>
@@ -251,15 +251,15 @@
                         <li class="list-group-item">Content-Type: <span>JSON</span></li>
                         <li class="list-group-item">Response Body: A JSON object holding data of user by name. Example:
                             <code class="d-flex justify-content-start">
-                {
-                    "_id": "651b00f0092911baa0e5834f",
-                    "Username": "xand4r",
-                    "Password": "987456123",
-                    "Email": "xander@gmil.com",
-                    "Birthday": "1970-01-01T00:00:00.000Z",
-                    "FavoriteMovies": []
-                }
-                            </code>
+                        {
+                            "_id": "651b00f0092911baa0e5834f",
+                            "username": "xand4r",
+                            "password": "987456123",
+                            "email": "xander@gmil.com",
+                            "birthday": "1970-01-01T00:00:00.000Z",
+                            "favoriteMovies": []
+                        }
+                                    </code>
                         </li>
                     </ul>
                 </div>
@@ -282,10 +282,10 @@
                     <p>A JSON object holding data about the user to add. Example:</p>
                     <code class="d-flex justify-content-start">
                 {
-                    "Username": "nik1",
-                    "Password": "12ew56",
-                    "Email": "nik1@gmial.cg",
-                    "Birthday": "1989-09-19"
+                    "username": "lizzardWizzard",
+                    "password": "123456789",
+                    "email": "lizzwizz@mail.com",
+                    "birthday": "1990-09-19"
                 }
                     </code>
                     <h4>Response Data</h4>
@@ -296,12 +296,12 @@
                             added, including an ID. Example:
                             <code class="d-flex justify-content-start">
                 {
-                    "Username": "nik1",
-                    "Password": "12ew56",
-                    "Email": "nik1@gmial.cg",
-                    "Birthday": "1989-09-19T00:00:00.000Z",
-                    "FavoriteMovies": [],
-                    "_id": "651b101ed217a66520af69a0",
+                    "username": "lizzardWizzard",
+                    "password": "$2b$10$48Vs8X2WU814ycsudswfve2YJKhtSnLN8vJs8ECsleV3rUpLoaMTK",
+                    "email": "lizzwizz@mail.com",
+                    "birthday": "1990-10-09T23:00:00.000Z",
+                    "favoriteMovies": [],
+                    "_id": "6526c538edaf653bb841b42a",
                     "__v": 0
                 }
                                     </code>
@@ -317,7 +317,7 @@
                     <p>
                         <span class="badge text-bg-secondary fs-6">PUT</span>
                         -
-                        <span class="badge text-bg-warning fs-6">/users/:username</span>
+                        <span class="badge text-bg-warning fs-6">/users/{username}</span>
                     </p>
                     <h3>Description</h3>
                     <p>Update information from a user.</p>
@@ -327,10 +327,10 @@
                     <p>A JSON holding the data from the user to add. Example:</p>
                     <code class="d-flex justify-content-start">
                     {
-                        "Username": "nik1",
-                        "Password": "12ew56",
-                        "Email": "nik1@gmial.cg",
-                        "Birthday": "1989-09-19"
+                        "username": "dragon123",
+                        "password": "12345678",
+                        "email": "dragon123@mail.com",
+                        "birthday": "11-01-2003"
                     }
                             </code>
                     <h4>Response Data</h4>
@@ -341,7 +341,15 @@
                             email and date of birth was
                             updated. Example:
                             <code class="d-flex justify-content-start">
-                    `User ${username} was updated.`
+                    {
+                        "_id": "6526bde801b138a6c032067f",
+                        "username": "dragon123",
+                        "password": "12345678",
+                        "email": "dragon123@mail.com",
+                        "birthday": "2003-10-31T23:00:00.000Z",
+                        "favoriteMovies": [],
+                        "__v": 0
+                    }
                         </code>
 
                         </li>
@@ -356,7 +364,7 @@
                     <p>
                         <span class="badge text-bg-info fs-6">POST</span>
                         -
-                        <span class="badge text-bg-warning fs-6">/users/:username/movies/:movieID</span>
+                        <span class="badge text-bg-warning fs-6">/users/{username}/movies/{movieID}</span>
                     </p>
                     <h3>Description</h3>
                     <p>Add a movie by ID into user's favorite list.</p>
@@ -364,12 +372,7 @@
                     <p><span class="badge text-bg-primary fs-6">'username'</span> - (required)</p>
                     <p><span class="badge text-bg-primary fs-6">'movieID'</span> - (required)</p>
                     <h4>Request Data</h4>
-                    <p>A JSON holding the data from the user to add. Example:</p>
-                    <code class="d-flex justify-content-start">
-            {
-                "FavoriteMovies": "651aff18623d3e32b0d26625"
-            }
-                    </code>
+                    <p>None</p>
                     <h4>Response Data</h4>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
@@ -377,17 +380,15 @@
                         <li class="list-group-item">Response Body: A JSON object holding data about the movie that was
                             added. Example:
                             <code class="d-flex justify-content-start">
-        {
-            "_id": "651b101ed217a66520af69a0",
-            "Username": "nik1",
-            "Password": "12ew56",
-            "Email": "nik1@gmial.cg",
-            "Birthday": "1989-09-19T00:00:00.000Z",
-            "FavoriteMovies": [
-            "651aff18623d3e32b0d26625"
-            ],
-            "__v": 0
-        }
+            {
+                "_id": "6526c538edaf653bb841b42a",
+                "username": "lizzardWizzard",
+                "password": "$2b$10$48Vs8X2WU814ycsudswfve2YJKhtSnLN8vJs8ECsleV3rUpLoaMTK",
+                "email": "lizzwizz@mail.com",
+                "birthday": "1990-10-09T23:00:00.000Z",
+                "favoriteMovies": [ "651b101ed217a66520af69a0"],
+                "__v": 0
+            }
                             </code>
                         </li>
                     </ul>
@@ -401,7 +402,7 @@
                     <p>
                         <span class="badge text-bg-danger fs-6">DELETE</span>
                         -
-                        <span class="badge text-bg-warning fs-6">/users/:username/movies/:movieID</span>
+                        <span class="badge text-bg-warning fs-6">/users/{username}/movies/{movieId}</span>
                     </p>
                     <h3>Description</h3>
                     <p>Remove a movie by ID into user's favorite list.</p>
@@ -414,10 +415,17 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
                         <li class="list-group-item">Content-Type: <span>JSON</span></li>
-                        <li class="list-group-item">Response Body: A message indicating the user's favorite movie was
-                            deleted. Example:
+                        <li class="list-group-item">Response Body: A JSON indicating the user's information. Example:
                             <code class="d-flex justify-content-start">
-            "Movie removed from list"
+                {
+                    "_id": "6526c538edaf653bb841b42a",
+                    "username": "lizzardWizzard",
+                    "password": "$2b$10$48Vs8X2WU814ycsudswfve2YJKhtSnLN8vJs8ECsleV3rUpLoaMTK",
+                    "email": "lizzwizz@mail.com",
+                    "birthday": "1990-10-09T23:00:00.000Z",
+                    "favoriteMovies": [],
+                    "__v": 0
+                }
                             </code>
                         </li>
                     </ul>
@@ -431,24 +439,33 @@
                     <p>
                         <span class="badge text-bg-danger fs-6">DELETE</span>
                         -
-                        <span class="badge text-bg-warning fs-6">/users/:username</span>
+                        <span class="badge text-bg-warning fs-6">/users/{username}</span>
                     </p>
                     <h3>Description</h3>
                     <p>Remove a movie by ID into user's favorite list.</p>
                     <h4>Parameters</h4>
                     <p><span class="badge text-bg-primary fs-6">'username'</span> - (required)</p>
-                    <p><span class="badge text-bg-primary fs-6">'movieID'</span> - (required)</p>
                     <h4>Request Data</h4>
                     <p>None</p>
                     <h4>Response Data</h4>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
                         <li class="list-group-item">Content-Type: <span>JSON</span></li>
-                        <li class="list-group-item">Response Body: A message indicating the user's deregistration was
-                            succesful. Example:
+                        <li class="list-group-item">Response Body: A JSON object with the user's who was removed.
+                            Example:
                             <code class="d-flex justify-content-start">
-                "Movie removed from list"
-                                    </code>
+                {
+                    "_id": "6526bde801b138a6c032067f",
+                    "username": "dragon123",
+                    "password": "12345678",
+                    "email": "dragon123@mail.com",
+                    "birthday": "2003-10-31T23:00:00.000Z",
+                    "favoriteMovies": ["651aff18623d3e32b0d2661e","651aff18623d3e32b0d2661f"],
+                    "__v": 0
+                }
+
+
+                            </code>
                         </li>
                     </ul>
                 </div>

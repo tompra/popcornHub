@@ -2,37 +2,37 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 
 let movieSchema = mongoose.Schema({
-    Title: {type: String, required: true},
-    Description: {type: String, required: true},
-    Genre: {
-        Name: String,
-        Description: String
+    title: {type: String, required: true},
+    description: {type: String, required: true},
+    genre: {
+        name: String,
+        description: String
     },
-    Directors:{
-        Name: String,
-        Bio: String,
-        Birth: Date,
-        Death: Date
+    director:{
+        name: String,
+        bio: String,
+        birth: Date,
+        death: Date
     },
-    Actors: [String],
-    ImagePath: String,
-    Featured: Boolean
+    actors: [String],
+    imagePath: String,
+    featured: Boolean
 })
 
 let userSchema = mongoose.Schema({
-    Username: {type: String, required: true},
-    Password: {type: String, required: true},
-    Email: {type: String, required: true},
-    Birthday: Date,
-    FavoriteMovies:[{type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
+    username: {type: String, required: true},
+    password: {type: String, required: true},
+    email: {type: String, required: true},
+    birthday: Date,
+    favoriteMovies:[{type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
 })
 
-userSchema.statics.hashPassword = (password) => {
-    return bcrypt.hashSync(password, 10);
+userSchema.statics.hashPassword = (pwd) => {
+    return bcrypt.hashSync(pwd, 10);
 }
 
-userSchema.methods.validatePassword = function(password) {
-    return bcrypt.compareSync(password, this.Password)
+userSchema.methods.validatePassword = function(pwd) {
+    return bcrypt.compareSync(pwd, this.password)
 }
 
 let Movie = mongoose.model('Movie', movieSchema)
