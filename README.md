@@ -29,16 +29,23 @@ I'm the developer behind this project, responsible for various tasks:
 
 ## App details 
   - Node.js
-  - MongoDB (Mongoose && MongoAtlasDB)
+  - MongoDB (Mongoose && MongoDB Atlas)
   - Postman
 
 ## Dependencies
-  - Express.js
-  - Passport.js
-  - Morgan
-  - Body parser
-  - Bcrypt
-  - Express-validator
-  - jsonWebTocken
-  - Cors
+# Frameworks
+- Express.js
+
+# Middlewares
+- Body-Parser: used for parsing incoming request bodies, essential for hadling request with JSON or URL-encoded data.
+- Cors: Enabling Cross-Origin Resource Sharing, allowing controlled access to resources on allowed domains.
+- Morgan: logging HTTP requests, which is used for monitoring.
+
+# Libraries
+- Bcrypt: for hashing passwords, enhacing security to user's password data.
+- JSONWebTocken: creates and verifies JSON web tockens, used for authentication and authorization.
+- Mongoose: for MongoDB object modeling in Node.js.
+- Passport.js: implement user authentication and authorization strategies.
+
+
 
