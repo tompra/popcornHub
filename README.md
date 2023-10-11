@@ -10,6 +10,23 @@ application will provide users with access to information about different
 movies, directors, and genres. Users will be able to sign up, update their
 personal information, and create a list of their favorite movies.
 
+## Tasks in the project
+
+I'm the developer behind this project, responsible for various tasks:
+
+  - Created a server with Express.
+  - Designed a REST API with CRUD functionality.
+  - Generated API documentation.
+  - Conducted testing with Postman.
+  - Established a NoSQL database using MongoDB.
+  - Integrated the database with the API, implementing business logic.
+  - Ensured security with CORS middleware, permitting access from specific domains.
+  - Enhanced data security by encrypting user passwords using bcrypt.
+  - Implemented server-side validation and data escaping to prevent XSS and SQL injection.
+  - Successfully deployed the API to an online hosting server.
+  - Migrated the local database to a cloud-based hosting platform.
+
+
 ## App details 
   - Node.js
   - MongoDB (Mongoose && MongoAtlasDB)
