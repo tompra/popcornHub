@@ -155,7 +155,7 @@ const movieDetails = async data => {
         getDirectorDetails(data),
         getActorsDetails(data),
     ]);
-
+    console.log(data);
     const movieData = {
         genres: getGenresNameAndDescription(data.genres),
         title: data.title,
