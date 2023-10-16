@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const { User, Movie } = require('./models.js');
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
+const secrets = require('./secret.json');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
     flags: 'a',
 });
@@ -135,6 +136,25 @@ app.get(
         }
     }
 );
+
+// Check for validation
+const validateUserData = [
+    check('username', 'Username is required')
+        .isLength({ min: 5 })
+        .withMessage('User should be at least 5 characters long'),
+    check(
+        'username',
+        'Username contains non-alphanumeric characters - not allowed'
+    ).isAlphanumeric(),
+    check('password', 'Password is required')
+        .not()
+        .isEmpty()
+        .withMessage('Password is required'),
+    check('password', 'Password must be at least 8 characters long').isLength({
+        min: 8,
+    }),
+    check('email', 'Email does not appear to be valid').isEmail(),
+];
 
 // Add new user
 app.post('/users', validateUserData, async (req, res) => {
@@ -272,34 +292,14 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something is wrong!');
 });
 
-// Calling the server
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server is running in port ${PORT}...`);
-});
-
-// Check for validation
-const validateUserData = [
-    check('username', 'Username is required')
-        .isLength({ min: 5 })
-        .withMessage('User should be at least 5 characters long'),
-    check(
-        'username',
-        'Username contains non-alphanumeric characters - not allowed'
-    ).isAlphanumeric(),
-    check('password', 'Password is required')
-        .not()
-        .isEmpty()
-        .withMessage('Password is required'),
-    check('password', 'Password must be at least 8 characters long').isLength({
-        min: 8,
-    }),
-    check('email', 'Email does not appear to be valid').isEmail(),
-];
-
 //Configuration
 const PORT = process.env.PORT || 8000;
-const secrets = require('./secret.json');
 let allowedOrigins = [
     `http://localhost:8000`,
     'https://popcornhub-api.onrender.com/',
 ];
+
+// Calling the server
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running in port ${PORT}...`);
+});
