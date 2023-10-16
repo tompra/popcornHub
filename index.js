@@ -152,7 +152,6 @@ app.post('/users', validateUserData, async (req, res) => {
     try {
         const { username, password, email, birthday } = req.body;
         const hashedPassword = User.hashPassword(password);
-        4;
         const user = await User.findOne({ username: username });
         const newUser = await User.create({
             username,
