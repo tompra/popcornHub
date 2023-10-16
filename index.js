@@ -12,14 +12,6 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
     flags: 'a',
 });
 
-//Configuration
-const PORT = process.env.PORT || 8000;
-const secrets = require('./secret.json');
-let allowedOrigins = [
-    `http://localhost:8000`,
-    'https://popcornhub-api.onrender.com/',
-];
-
 //Middlewares
 app.use(
     cors({
@@ -185,12 +177,13 @@ app.put(
         }
         try {
             const { username, password, email, birthday } = req.params;
+            const hashedPassword = User.hashPassword(password);
             const updateUser = await User.findOneAndUpdate(
                 { username: username },
                 {
                     $set: {
                         username: username,
-                        password: password,
+                        password: hashedPassword,
                         email: email,
                         birthday: birthday,
                     },
@@ -301,4 +294,12 @@ const validateUserData = [
         min: 8,
     }),
     check('email', 'Email does not appear to be valid').isEmail(),
+];
+
+//Configuration
+const PORT = process.env.PORT || 8000;
+const secrets = require('./secret.json');
+let allowedOrigins = [
+    `http://localhost:8000`,
+    'https://popcornhub-api.onrender.com/',
 ];
