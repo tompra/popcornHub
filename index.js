@@ -9,6 +9,7 @@ const { User, Movie } = require('./models.js');
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
 const secrets = require('./secret.json');
+const bycrpt = require('bcrypt');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
     flags: 'a',
 });
@@ -47,19 +48,15 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {});
 
 // Get all movies
-app.get(
-    '/movies',
-    passport.authenticate('jwt', { session: false }),
-    async (req, res) => {
-        try {
-            const movies = await Movie.find();
-            res.status(200).json(movies);
-        } catch (err) {
-            console.error(err);
-            res.status(500).send(`Error retrieving all movies: ${err}`);
-        }
+app.get('/movies', async (req, res) => {
+    try {
+        const movies = await Movie.find();
+        res.status(200).json(movies);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send(`Error retrieving all movies: ${err}`);
     }
-);
+});
 
 // Get movies by title
 app.get(
@@ -86,7 +83,7 @@ app.get(
     async (req, res) => {
         try {
             const { genreName } = req.params;
-            const movieGenre = await Movie.findOne(genreName);
+            const movieGenre = await Movie.findOne({ 'genre.name': genreName });
             !movieGenre
                 ? res.status(400).send(`Movie by ${genreName} doesn't exist`)
                 : res.status(201).json(movieGenre.genre);
@@ -196,10 +193,11 @@ app.put(
             return res.status(400).send('Permission denied');
         }
         try {
-            const { username, password, email, birthday } = req.params;
-            const hashedPassword = User.hashPassword(password);
+            const { username, password, email, birthday } = req.body;
+            const saltRounds = 10;
+            const hashedPassword = await bycrpt.hash(password, saltRounds);
             const updateUser = await User.findOneAndUpdate(
-                { username: username },
+                { username: req.params.username },
                 {
                     $set: {
                         username: username,
@@ -210,7 +208,7 @@ app.put(
                 },
                 { new: true }
             );
-            res.json(201).json(updateUser);
+            res.status(201).json(updateUser);
         } catch (err) {
             console.error(err);
             res.status(500).send(`Error updating user information: ${err}`);
@@ -251,7 +249,7 @@ app.delete(
         try {
             const { username } = req.params;
             const { movieID } = req.params;
-            const removeMovie = User.findOneAndUpdate(
+            const removeMovie = await User.findOneAndUpdate(
                 { username: username },
                 { $pull: { favoriteMovies: movieID } },
                 { new: true }
@@ -275,7 +273,9 @@ app.delete(
     async (req, res) => {
         try {
             const { username } = req.params;
-            const removeUser = User.findOneAndRemove({ username: username });
+            const removeUser = await User.findOneAndRemove({
+                username: username,
+            });
             !removeUser
                 ? res.status(400).send(`${username} not found`)
                 : res.status(201).json(removeUser);
@@ -294,7 +294,7 @@ app.use((err, req, res, next) => {
 
 //Configuration
 const PORT = process.env.PORT || 8000;
-let allowedOrigins = [
+const allowedOrigins = [
     `http://localhost:8000`,
     'https://popcornhub-api.onrender.com/',
 ];
