@@ -295,8 +295,9 @@ app.use((err, req, res, next) => {
 //Configuration
 const PORT = process.env.PORT || 8000;
 const allowedOrigins = [
-    `http://localhost:8000`,
+    'http://localhost:8000',
     'https://popcornhub-api.onrender.com/',
+    'http://localhost:1234',
 ];
 
 // Calling the server
