@@ -68,7 +68,7 @@ app.get(
             const movieTitle = await Movie.findOne({ title: title });
             !movieTitle
                 ? res.status(400).send(`Movie doesn't exist.`)
-                : res.status(201).json(movieTitle);
+                : res.status(200).json(movieTitle);
         } catch (err) {
             console.error(err);
             res.status(500).send(`Error in retrieving movie by title ${err}`);
@@ -86,7 +86,7 @@ app.get(
             const movieGenre = await Movie.findOne({ 'genre.name': genreName });
             !movieGenre
                 ? res.status(400).send(`Movie by ${genreName} doesn't exist`)
-                : res.status(201).json(movieGenre.genre);
+                : res.status(200).json(movieGenre.genre);
         } catch (err) {
             console.error(err);
             res.status(500).send(`Error retrieving movie by genre: ${err}`);
@@ -108,7 +108,7 @@ app.get(
                 ? res
                       .status(400)
                       .send(`Director by ${directorName} doesn't exist`)
-                : res.status(201).json(movieDirector.director);
+                : res.status(200).json(movieDirector.director);
         } catch (err) {
             console.error(err);
             res.status(500).send(`Error retrieving directors name: ${err}`);
@@ -126,7 +126,7 @@ app.get(
             const user = User.findOne({ username: username });
             !user
                 ? res.status(400).send(`User: ${username} doesn't exist.`)
-                : res.status(201).json(user);
+                : res.status(200).json(user);
         } catch (err) {
             console.error(err);
             res.status(500).send(`Error getting Username: ${err}`);
@@ -170,7 +170,7 @@ app.post('/users', validateUserData, async (req, res) => {
         });
         user
             ? res.status(400).send(`${username} already exist.`)
-            : res.status(200).json(newUser);
+            : res.status(201).json(newUser);
     } catch (err) {
         console.error(err);
         res.status(500).send(`Error creating new user`);
@@ -208,7 +208,7 @@ app.put(
                 },
                 { new: true }
             );
-            res.status(201).json(updateUser);
+            res.status(204).json(updateUser);
         } catch (err) {
             console.error(err);
             res.status(500).send(`Error updating user information: ${err}`);
@@ -256,7 +256,7 @@ app.delete(
             );
             !removeMovie
                 ? res.status(400).send(`Movie: ${movieID} is not in the list`)
-                : res.status(201).json(removeMovie);
+                : res.status(204).json(removeMovie);
         } catch (err) {
             console.error(err);
             res.status(500).send(
@@ -278,7 +278,7 @@ app.delete(
             });
             !removeUser
                 ? res.status(400).send(`${username} not found`)
-                : res.status(201).json(removeUser);
+                : res.status(204).json(removeUser);
         } catch (err) {
             console.error(err);
             res.status(500).send(`Error in deleting user: ${err}`);

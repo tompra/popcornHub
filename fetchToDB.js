@@ -220,3 +220,7 @@ const getGenresNameAndDescription = data => {
     });
     return displayGenre;
 };
+
+//Create a random number betwenn 1 to 1000 to get movies
+
+const getRandomNumber = movies => {};
