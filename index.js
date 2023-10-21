@@ -48,15 +48,19 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {});
 
 // Get all movies
-app.get('/movies', async (req, res) => {
-    try {
-        const movies = await Movie.find();
-        res.status(200).json(movies);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send(`Error retrieving all movies: ${err}`);
+app.get(
+    '/movies',
+    passport.authenticate('jwt', { session: false }),
+    async (req, res) => {
+        try {
+            const movies = await Movie.find();
+            res.status(200).json(movies);
+        } catch (err) {
+            console.error(err);
+            res.status(500).send(`Error retrieving all movies: ${err}`);
+        }
     }
-});
+);
 
 // Get movies by title
 app.get(
