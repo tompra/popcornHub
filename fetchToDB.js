@@ -37,27 +37,31 @@ getMoviesWithDetails(500);
 
 // GET PERSON DATA
 const getPersonById = async (personID) => {
-    const apiURL = `${baseURL}/person/${personID}-?language=en-US`;
-    return await fetch(apiURL, options)
-        .then((response) => response.json())
-        .then((data) => {
-            const mappedPerson = {};
-            const keysToExtract = [
-                'biography',
-                'birthday',
-                'deathday',
-                'name',
-                'id',
-                'place_of_birth',
-            ];
-            for (const key of keysToExtract) {
-                if (data[key] !== undefined) {
-                    mappedPerson[key] = data[key];
-                }
+    try {
+        const apiURL = `${baseURL}/person/${personID}-?language=en-US`;
+        const response = fetch(apiURL, options);
+        if (!response.ok) {
+            throw Error(`Error retrieving person ${personID}`);
+        }
+        const data = await response.json();
+        const mappedPerson = {};
+        const keysToExtract = [
+            'biography',
+            'birthday',
+            'deathday',
+            'name',
+            'id',
+            'place_of_birth',
+        ];
+        for (const key of keysToExtract) {
+            if (data[key] !== undefined) {
+                mappedPerson[key] = data[key];
             }
-            return mappedPerson;
-        })
-        .catch((err) => console.error(err));
+        }
+        return mappedPerson;
+    } catch (err) {
+        console.error(err);
+    }
 };
 
 // GET MOVIE DETAILS
