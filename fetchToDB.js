@@ -1,6 +1,5 @@
 const baseURL = 'https://api.themoviedb.org/3/';
-const imagePath = 'https://image.tmdb.org/t/p/w500/';
-const fs = require('fs');
+const imagePath = 'https://image.tmdb.org/t/p/w500';
 const secrets = require('./secret.json');
 const options = {
     method: 'GET',
@@ -20,36 +19,28 @@ const options = {
 // Function random number generator until x number
 
 // Get ALL DATA
-const getMoviesWithDetails = async movieID => {
-    const apiURL = `${baseURL}movie/${movieID}?api_key=R${secrets.api_key}8&language=en-US&append_to_response=credits`;
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: secrets.access_token_auth,
-        },
-    };
-    return await fetch(apiURL, options)
-        .then(response => response.json())
-        .then(data => movieDetails(data))
-        .catch(err => console.error(err));
+const getMoviesWithDetails = async (movieID) => {
+    try {
+        const apiURL = `${baseURL}movie/${movieID}?api_key=R${secrets.api_key}8&language=en-US&append_to_response=credits`;
+        const response = await fetch(apiURL, options);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch movie details for ID ${movieID}`);
+        }
+        const data = await response.json();
+        return movieDetails(data);
+    } catch (err) {
+        console.error(err);
+    }
 };
 
-getMoviesWithDetails(1);
+getMoviesWithDetails(500);
 
 // GET PERSON DATA
-const getPersonById = async personID => {
+const getPersonById = async (personID) => {
     const apiURL = `${baseURL}/person/${personID}-?language=en-US`;
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: secrets.access_token_auth,
-        },
-    };
     return await fetch(apiURL, options)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
             const mappedPerson = {};
             const keysToExtract = [
                 'biography',
@@ -66,43 +57,42 @@ const getPersonById = async personID => {
             }
             return mappedPerson;
         })
-        .catch(err => console.error(err));
+        .catch((err) => console.error(err));
 };
 
 // GET MOVIE DETAILS
-const movieDetails = async data => {
+const movieDetails = async (data) => {
     const [director, actors] = await Promise.all([
         getDirectorDetails(data),
         getActorsDetails(data),
     ]);
-    console.log(data);
     const movieData = {
         genres: getGenresNameAndDescription(data.genres),
         title: data.title,
         release_date: data.release_date,
         description: data.overview,
         directors: director,
-        imageUrl: data.poster_path,
+        imageUrl: `${imagePath}${data.poster_path}`,
         actors: actors,
     };
     return console.log(movieData);
 };
 
 // Fetch director details
-const getDirectorDetails = async data => {
+const getDirectorDetails = async (data) => {
     const director = data.credits.crew
-        .filter(item => item.job === 'Director')
-        .map(item => getPersonById(item.id));
+        .filter((item) => item.job === 'Director')
+        .map((item) => getPersonById(item.id));
     return Promise.all(director);
 };
 
 // Fetch actors details
-const getActorsDetails = async data => {
+const getActorsDetails = async (data) => {
     const actor = data.credits.cast
         .filter(
-            item => item.order < 3 && item.known_for_department === 'Acting'
+            (item) => item.order < 3 && item.known_for_department === 'Acting'
         )
-        .map(item => getPersonById(item.id));
+        .map((item) => getPersonById(item.id));
 
     return Promise.all(actor);
 };
@@ -207,10 +197,12 @@ const genres = [
 ];
 
 // Get genre name and description
-const getGenresNameAndDescription = data => {
+const getGenresNameAndDescription = (data) => {
     const displayGenre = [];
-    data.forEach(item => {
-        const matchGenre = genres.find(genre => genre.genre_name === item.name);
+    data.forEach((item) => {
+        const matchGenre = genres.find(
+            (genre) => genre.genre_name === item.name
+        );
         if (matchGenre) {
             displayGenre.push({
                 genre_name: matchGenre.genre_name,
@@ -223,4 +215,4 @@ const getGenresNameAndDescription = data => {
 
 //Create a random number betwenn 1 to 1000 to get movies
 
-const getRandomNumber = movies => {};
+const getRandomNumber = (movies) => {};
