@@ -862,3 +862,8 @@
 127.0.0.1 - - [31/Oct/2023:13:23:32 +0000] "PUT /users/pachu123 HTTP/1.1" 500 - "-" "PostmanRuntime/7.33.0"
 127.0.0.1 - - [31/Oct/2023:13:26:12 +0000] "PUT /users/pachu HTTP/1.1" 204 - "-" "PostmanRuntime/7.33.0"
 127.0.0.1 - - [31/Oct/2023:13:29:34 +0000] "PUT /users/pachu123 HTTP/1.1" 204 - "-" "PostmanRuntime/7.33.0"
+127.0.0.1 - - [31/Oct/2023:13:38:56 +0000] "PUT /users/pachu HTTP/1.1" 204 - "-" "PostmanRuntime/7.33.0"
+127.0.0.1 - - [31/Oct/2023:13:42:32 +0000] "PUT /users/pachu123 HTTP/1.1" 204 - "-" "PostmanRuntime/7.33.0"
+127.0.0.1 - - [31/Oct/2023:13:42:52 +0000] "PUT /users/pachu HTTP/1.1" 204 - "-" "PostmanRuntime/7.33.0"
+127.0.0.1 - - [31/Oct/2023:13:43:14 +0000] "PUT /users/pachu123 HTTP/1.1" 204 - "-" "PostmanRuntime/7.33.0"
+127.0.0.1 - - [31/Oct/2023:14:08:06 +0000] "PUT /users/pachu HTTP/1.1" 200 221 "-" "PostmanRuntime/7.33.0"

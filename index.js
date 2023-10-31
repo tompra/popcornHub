@@ -215,7 +215,7 @@ app.put(
                 { new: true }
             );
             console.log('Update userL', updateUser);
-            res.status(204).json(updateUser);
+            res.status(200).json(updateUser);
         } catch (err) {
             console.error(err);
             res.status(500).send(`Error updating user information: ${err}`);
