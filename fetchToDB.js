@@ -33,7 +33,7 @@ const getMoviesWithDetails = async (movieID) => {
     }
 };
 
-getMoviesWithDetails(500);
+// getMoviesWithDetails(500);
 
 // GET PERSON DATA
 const getPersonById = async (personID) => {
@@ -79,7 +79,7 @@ const movieDetails = async (data) => {
         imageUrl: `${imagePath}${data.poster_path}`,
         actors: actors,
     };
-    return console.log(movieData);
+    return movieData;
 };
 
 // Fetch director details

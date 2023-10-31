@@ -187,14 +187,16 @@ app.put(
     validateUserData,
     passport.authenticate('jwt', { session: false }),
     async (req, res) => {
-        //handle errors of validation
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            //status code 422 - unprocessable content
-            return res.status(422).json({ errors: errors.array() });
-        }
+        // //handle errors of validation
+        // const errors = validationResult(req);
+        // if (!errors.isEmpty()) {
+        //     //status code 422 - unprocessable content
+        //     return res.status(422).json({ errors: errors.array() });
+        // }
+        console.log('PUT request received');
+        console.log('Request body', req.body);
         if (req.user.username !== req.params.username) {
-            return res.status(400).send('Permission denied');
+            res.status(400).send('Permission denied');
         }
         try {
             const { username, password, email, birthday } = req.body;
@@ -212,6 +214,7 @@ app.put(
                 },
                 { new: true }
             );
+            console.log('Update userL', updateUser);
             res.status(204).json(updateUser);
         } catch (err) {
             console.error(err);
