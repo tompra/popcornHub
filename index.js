@@ -305,6 +305,7 @@ const allowedOrigins = [
     'http://localhost:8000',
     'https://popcornhub-api.onrender.com/',
     'http://localhost:1234',
+    'http://localhost:5173/',
 ];
 
 // Calling the server
