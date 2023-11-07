@@ -306,6 +306,7 @@ const allowedOrigins = [
     'https://popcornhub-api.onrender.com/',
     'http://localhost:1234',
     'http://localhost:5173',
+    'https://cinematix.netlify.app',
 ];
 
 // Calling the server
