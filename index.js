@@ -308,6 +308,7 @@ const allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:4200',
     'https://cinematix.netlify.app',
+    'https://tompra.github.io/filmify/',
 ];
 
 // Calling the server
