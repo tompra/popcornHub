@@ -1,484 +1,651 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>PopcornHub | Documentation</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PopcornHub | Documentation</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">PopcornHub</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="documentation.html">Documentation</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <main>
-        <div class="container my-3 border-bottom">
-            <div class="row">
-                <div class="col-12">
-                    <h1>Documentation</h1>
-                    <p class="lh-lg my-4">Welcome to the PopcornHub documentation. This guide will help you interact
-                        with
-                        our
-                        movie-related data.
-                        Our API empowers you to access a wealth of information about movies, providing in-depth details
-                        about films, genres, and user interactions. Whether you're building a movie recommendation app,
-                        a cinema
-                        review
-                        platform, or simply exploring the world of cinema, our API has you covered. Let's dive into the
-                        exciting
-                        world of movies
-                        together!"
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="container my-3 border-bottom">
-            <h2 class="my-3">Endpoints</h2>
-            <div class="row">
-                <div class="col-12">
-                    <h3>All movies</h3>
-                    <p>
-                        <span class="badge text-bg-success fs-6">GET</span>
-                        -
-                        <span class="badge text-bg-warning fs-6">/movies</span>
-                    </p>
-                    <h3>Description</h3>
-                    <p>Retrieve detailed information about all the movies.</p>
-                    <h4>Parameters</h4>
-                    <p>None</p>
-                    <h4>Request Data</h4>
-                    <p>None</p>
-                    <h4>Response Data</h4>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
-                        <li class="list-group-item">Content-Type: <span>JSON</span></li>
-                        <li class="list-group-item">Response Body: A JSON object holding data of all movies. Example:
-                            <code class="d-flex justify-content-start">
-            [ 
-                {
-                    "genre": {
-                        "description": "Films of this genre generally involve various aspects of crime and its detection. Stylistically, the
-                            genre may overlap and combine with many other genres, such as drama or gangster film,[1] but also include comedy, and,
-                            in turn, is divided into many sub-genres, such as mystery, suspense or noir.",
-                        "name": "Crime"
-                    },
-                    "director": {
-                        "name": "Luc Besson",
-                        "bio": "Luc Besson spent the first years of his life following his parents, scuba diving instructors, around the world.
-                            His early life was entirely aquatic. He already showed amazing creativity as a youth, writing early drafts of The Big
-                            Blue (1988) and The Fifth Element (1997), as an adolescent bored in school",
-                        "birth": "1970-01-01T00:00:00.000Z",
-                        "death": null
-                    },
-                    "_id": "651aff18623d3e32b0d2661c",
-                    "description": "After her father, step-mother, step-sister and little brother are killed by her father's employers, the
-                            12-year-old daughter of an abject drug dealer manages to take refuge in the apartment of a professional hitman who at
-                            her request teaches her the methods of his job so she can take her revenge on the corrupt DEA agent who ruined her life
-                            by killing her beloved brother",
-                    "title": "Leon",
-                    "actors": [ "Jean Reno","Gary Oldman","Natalie Portman"],
-                    "featured": true,
-                    "imageUrl": "https://www.imdb.com/title/tt0110413/mediaviewer/rm727457281/?ref_=tt_ov_i"
-                }, ... 
-            ]
-                    </code>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">PopcornHub</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                aria-current="page"
+                                href="index.html"
+                                >Home</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link active"
+                                aria-current="page"
+                                href="documentation.html"
+                                >Documentation</a
+                            >
                         </li>
                     </ul>
                 </div>
-
             </div>
-        </div>
-        <div class="container my-3 border-bottom">
-            <div class="row">
-                <div class="col-12">
-                    <h3>Movie by title</h3>
-                    <p>
-                        <span class="badge text-bg-success fs-6">GET</span>
-                        -
-                        <span class="badge text-bg-warning fs-6">/movies/{title}</span>
-                    </p>
-                    <h3>Description</h3>
-                    <p>Retrieve detailed information about a specific movie by title.</p>
-                    <h4>Parameters</h4>
-                    <p><span class="badge text-bg-primary fs-6">'title'</span> - (required)</p>
-                    <h4>Request Data</h4>
-                    <p>None</p>
-                    <h4>Response Data</h4>
-                    <ul class="list-group list-group-flush ">
-                        <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
-                        <li class="list-group-item">Content-Type: <span>JSON</span></li>
-                        <li class="list-group-item">Response Body: A JSON object holding data of a specific movie.
+        </nav>
+        <main>
+            <div class="container my-3 border-bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Documentation</h1>
+                        <p class="lh-lg my-4">
+                            Welcome to the PopcornHub documentation. This guide
+                            will help you interact with our movie-related data.
+                            Our API empowers you to access a wealth of
+                            information about movies, providing in-depth details
+                            about films, genres, and user interactions. Whether
+                            you're building a movie recommendation app, a cinema
+                            review platform, or simply exploring the world of
+                            cinema, our API has you covered. Let's dive into the
+                            exciting world of movies together!"
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container my-3 border-bottom">
+                <h2 class="my-3">Endpoints</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <h3>All movies</h3>
+                        <p>
+                            <span class="badge text-bg-success fs-6">GET</span>
+                            -
+                            <span class="badge text-bg-warning fs-6"
+                                >/movies</span
+                            >
+                        </p>
+                        <h3>Description</h3>
+                        <p>
+                            Retrieve detailed information about all the movies.
+                        </p>
+                        <h4>Parameters</h4>
+                        <p>None</p>
+                        <h4>Request Data</h4>
+                        <p>None</p>
+                        <h4>Response Data</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Status Code: <span>200 (OK)</span>
+                            </li>
+                            <li class="list-group-item">
+                                Content-Type: <span>JSON</span>
+                            </li>
+                            <li class="list-group-item">
+                                Response Body: A JSON object holding data of all
+                                movies. Example:
+                                <code class="d-flex justify-content-start">
+                                    [ { "genre": { "description": "Films of this
+                                    genre generally involve various aspects of
+                                    crime and its detection. Stylistically, the
+                                    genre may overlap and combine with many
+                                    other genres, such as drama or gangster
+                                    film,[1] but also include comedy, and, in
+                                    turn, is divided into many sub-genres, such
+                                    as mystery, suspense or noir.", "name":
+                                    "Crime" }, "director": { "name": "Luc
+                                    Besson", "bio": "Luc Besson spent the first
+                                    years of his life following his parents,
+                                    scuba diving instructors, around the world.
+                                    His early life was entirely aquatic. He
+                                    already showed amazing creativity as a
+                                    youth, writing early drafts of The Big Blue
+                                    (1988) and The Fifth Element (1997), as an
+                                    adolescent bored in school", "birth":
+                                    "1970-01-01T00:00:00.000Z", "death": null },
+                                    "_id": "651aff18623d3e32b0d2661c",
+                                    "description": "After her father,
+                                    step-mother, step-sister and little brother
+                                    are killed by her father's employers, the
+                                    12-year-old daughter of an abject drug
+                                    dealer manages to take refuge in the
+                                    apartment of a professional hitman who at
+                                    her request teaches her the methods of his
+                                    job so she can take her revenge on the
+                                    corrupt DEA agent who ruined her life by
+                                    killing her beloved brother", "title":
+                                    "Leon", "actors": [ "Jean Reno","Gary
+                                    Oldman","Natalie Portman"], "featured":
+                                    true, "imageUrl":
+                                    "https://www.imdb.com/title/tt0110413/mediaviewer/rm727457281/?ref_=tt_ov_i"
+                                    }, ... ]
+                                </code>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container my-3 border-bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Movie by title</h3>
+                        <p>
+                            <span class="badge text-bg-success fs-6">GET</span>
+                            -
+                            <span class="badge text-bg-warning fs-6"
+                                >/movies/:title</span
+                            >
+                        </p>
+                        <h3>Description</h3>
+                        <p>
+                            Retrieve detailed information about a specific movie
+                            by title.
+                        </p>
+                        <h4>Parameters</h4>
+                        <p>
+                            <span class="badge text-bg-primary fs-6"
+                                >'title'</span
+                            >
+                            - (required)
+                        </p>
+                        <h4>Request Data</h4>
+                        <p>None</p>
+                        <h4>Response Data</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Status Code: <span>200 (OK)</span>
+                            </li>
+                            <li class="list-group-item">
+                                Content-Type: <span>JSON</span>
+                            </li>
+                            <li class="list-group-item">
+                                Response Body: A JSON object holding data of a
+                                specific movie. Example:
+                                <code class="d-flex justify-content-start">
+                                    { "genre": { "description": "Films of this
+                                    genre generally involve various aspects of
+                                    crime and its detection. Stylistically, the
+                                    genre may overlap and combine with many
+                                    other genres, such as drama or gangster
+                                    film,[1] but also include comedy, and, in
+                                    turn, is divided into many sub-genres, such
+                                    as mystery, suspense or noir.", "name":
+                                    "Crime" }, "director": { "name": "Luc
+                                    Besson", "bio": "Luc Besson spent the first
+                                    years of his life following his parents,
+                                    scuba diving instructors, around the world.
+                                    His early life was entirely aquatic. He
+                                    already showed amazing creativity as a
+                                    youth, writing early drafts of The Big Blue
+                                    (1988) and The Fifth Element (1997), as an
+                                    adolescent bored in school", "birth":
+                                    "1970-01-01T00:00:00.000Z", "death": null },
+                                    "_id": "651aff18623d3e32b0d2661c",
+                                    "description": "After her father,
+                                    step-mother, step-sister and little brother
+                                    are killed by her father's employers, the
+                                    12-year-old daughter of an abject drug
+                                    dealer manages to take refuge in the
+                                    apartment of a professional hitman who at
+                                    her request teaches her the methods of his
+                                    job so she can take her revenge on the
+                                    corrupt DEA agent who ruined her life by
+                                    killing her beloved brother", "title":
+                                    "Leon", "actors": [ "Jean Reno","Gary
+                                    Oldman","Natalie Portman"], "featured":
+                                    true, "imageUrl":
+                                    "https://www.imdb.com/title/tt0110413/mediaviewer/rm727457281/?ref_=tt_ov_i"
+                                    }
+                                </code>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container my-3 border-bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Genre by name</h3>
+                        <p>
+                            <span class="badge text-bg-success fs-6">GET</span>
+                            -
+                            <span class="badge text-bg-warning fs-6"
+                                >/movies/genre/:genreName</span
+                            >
+                        </p>
+                        <h3>Description</h3>
+                        <p>
+                            Retrieve detailed information about a specific genre
+                            by name.
+                        </p>
+                        <h4>Parameters</h4>
+                        <p>
+                            <span class="badge text-bg-primary fs-6"
+                                >'genreName'</span
+                            >
+                            - (required)
+                        </p>
+                        <h4>Request Data</h4>
+                        <p>None</p>
+                        <h4>Response Data</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Status Code: <span>200 (OK)</span>
+                            </li>
+                            <li class="list-group-item">
+                                Content-Type: <span>JSON</span>
+                            </li>
+                            <li class="list-group-item">
+                                Response Body: A JSON object holding data of
+                                genre by name. Example:
+                                <code class="d-flex justify-content-start">
+                                    { "description": "Thriller is a genre of
+                                    fiction that aims to keep the audience on
+                                    the edge of their seats through tension,
+                                    suspense, and unexpected twists. It is
+                                    characterized by a fast-paced plot that
+                                    revolves around a dangerous or suspenseful
+                                    situation, often with a central character
+                                    facing an imminent threat or danger.",
+                                    "name": "Thriller" }
+                                </code>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container my-3 border-bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Director by name</h3>
+                        <p>
+                            <span class="badge text-bg-success fs-6">GET</span>
+                            -
+                            <span class="badge text-bg-warning fs-6"
+                                >/movies/director/:directorsName</span
+                            >
+                        </p>
+                        <h3>Description</h3>
+                        <p>
+                            Retrieve detailed information about a specific
+                            director by name.
+                        </p>
+                        <h4>Parameters</h4>
+                        <p>
+                            <span class="badge text-bg-primary fs-6"
+                                >'directorsName'</span
+                            >
+                            - (required)
+                        </p>
+                        <h4>Request Data</h4>
+                        <p>None</p>
+                        <h4>Response Data</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Status Code: <span>200 (OK)</span>
+                            </li>
+                            <li class="list-group-item">
+                                Content-Type: <span>JSON</span>
+                            </li>
+                            <li class="list-group-item">
+                                Response Body: A JSON object holding data of
+                                genre by name. Example:
+                                <code class="d-flex justify-content-start">
+                                    { "name": "Ridley Scott", "bio": "Described
+                                    by film producer Michael Deeley as \"the
+                                    very best eye in the business\", director
+                                    Ridley Scott was born on November 30, 1937
+                                    in South Shields, Tyne and Wear. His father
+                                    was an officer in the Royal Engineers and
+                                    the family followed him as his career posted
+                                    him throughout the United Kingdom and Europe
+                                    before they eventually returned to
+                                    Teesside.", "birth":
+                                    "1937-11-30T00:00:00.000Z", "death": null }
+                                </code>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container my-3 border-bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>User by name</h3>
+                        <p>
+                            <span class="badge text-bg-success fs-6">GET</span>
+                            -
+                            <span class="badge text-bg-warning fs-6"
+                                >/users/:username</span
+                            >
+                        </p>
+                        <h3>Description</h3>
+                        <p>
+                            Retrieve detailed information about a specific user
+                            by name.
+                        </p>
+                        <h4>Parameters</h4>
+                        <p>
+                            <span class="badge text-bg-primary fs-6"
+                                >'username'</span
+                            >
+                            - (required)
+                        </p>
+                        <h4>Request Data</h4>
+                        <p>None</p>
+                        <h4>Response Data</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Status Code: <span>200 (OK)</span>
+                            </li>
+                            <li class="list-group-item">
+                                Content-Type: <span>JSON</span>
+                            </li>
+                            <li class="list-group-item">
+                                Response Body: A JSON object holding data of
+                                user by name. Example:
+                                <code class="d-flex justify-content-start">
+                                    { "_id": "651b00f0092911baa0e5834f",
+                                    "username": "xand4r", "password":
+                                    "987456123", "email": "xander@gmil.com",
+                                    "birthday": "1970-01-01T00:00:00.000Z",
+                                    "favoriteMovies": [] }
+                                </code>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container my-3 border-bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Add new user</h3>
+                        <p>
+                            <span class="badge text-bg-info fs-6">POST</span>
+                            -
+                            <span class="badge text-bg-warning fs-6"
+                                >/users</span
+                            >
+                        </p>
+                        <h3>Description</h3>
+                        <p>Add detailed information about a new user.</p>
+                        <h4>Parameters</h4>
+                        <p>None</p>
+                        <h4>Request Data</h4>
+                        <p>
+                            A JSON object holding data about the user to add.
                             Example:
-                            <code class="d-flex justify-content-start">
-        {
-            "genre": {
-                "description": "Films of this genre generally involve various aspects of crime and its detection. Stylistically, the
-                    genre may overlap and combine with many other genres, such as drama or gangster film,[1] but also include comedy, and,
-                    in turn, is divided into many sub-genres, such as mystery, suspense or noir.",
-                "name": "Crime"
-        },
-            "director": {
-                "name": "Luc Besson",
-                "bio": "Luc Besson spent the first years of his life following his parents, scuba diving instructors, around the world.
-                        His early life was entirely aquatic. He already showed amazing creativity as a youth, writing early drafts of The Big
-                        Blue (1988) and The Fifth Element (1997), as an adolescent bored in school",
-                "birth": "1970-01-01T00:00:00.000Z",
-                "death": null
-        },
-            "_id": "651aff18623d3e32b0d2661c",
-            "description": "After her father, step-mother, step-sister and little brother are killed by her father's employers, the
-                    12-year-old daughter of an abject drug dealer manages to take refuge in the apartment of a professional hitman who at
-                    her request teaches her the methods of his job so she can take her revenge on the corrupt DEA agent who ruined her life
-                    by killing her beloved brother",
-            "title": "Leon",
-            "actors": [ "Jean Reno","Gary Oldman","Natalie Portman"],
-            "featured": true,
-            "imageUrl": "https://www.imdb.com/title/tt0110413/mediaviewer/rm727457281/?ref_=tt_ov_i"
-        }
+                        </p>
+                        <code class="d-flex justify-content-start">
+                            { "username": "lizzardWizzard", "password":
+                            "123456789", "email": "lizzwizz@mail.com",
+                            "birthday": "1990-09-19" }
                         </code>
-                        </li>
-                    </ul>
+                        <h4>Response Data</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Status Code: <span>200 (OK)</span>
+                            </li>
+                            <li class="list-group-item">
+                                Content-Type: <span>JSON</span>
+                            </li>
+                            <li class="list-group-item">
+                                Response Body: A JSON object holding data about
+                                the user that was added, including an ID.
+                                Example:
+                                <code class="d-flex justify-content-start">
+                                    { "username": "lizzardWizzard", "password":
+                                    "$2b$10$48Vs8X2WU814ycsudswfve2YJKhtSnLN8vJs8ECsleV3rUpLoaMTK",
+                                    "email": "lizzwizz@mail.com", "birthday":
+                                    "1990-10-09T23:00:00.000Z",
+                                    "favoriteMovies": [], "_id":
+                                    "6526c538edaf653bb841b42a", "__v": 0 }
+                                </code>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container my-3 border-bottom">
-            <div class="row">
-                <div class="col-12">
-                    <h3>Genre by name</h3>
-                    <p>
-                        <span class="badge text-bg-success fs-6">GET</span>
-                        -
-                        <span class="badge text-bg-warning fs-6">/movies/genre/{genreName}</span>
-                    </p>
-                    <h3>Description</h3>
-                    <p>Retrieve detailed information about a especific genre by name.</p>
-                    <h4>Parameters</h4>
-                    <p><span class="badge text-bg-primary fs-6">'genreName'</span> - (required)</p>
-                    <h4>Request Data</h4>
-                    <p>None</p>
-                    <h4>Response Data</h4>
-                    <ul class="list-group list-group-flush ">
-                        <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
-                        <li class="list-group-item">Content-Type: <span>JSON</span></li>
-                        <li class="list-group-item">Response Body: A JSON object holding data of genre by name. Example:
-                            <code class="d-flex justify-content-start">
-        {
-            "description": "Thriller is a genre of fiction that aims to keep the audience on the edge of their seats through
-                tension, suspense, and unexpected twists. It is characterized by a fast-paced plot that revolves around a dangerous or
-                suspenseful situation, often with a central character facing an imminent threat or danger.",
-            "name": "Thriller"
-        }
-                        </code>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container my-3 border-bottom">
-            <div class="row">
-                <div class="col-12">
-                    <h3>Director by name</h3>
-                    <p>
-                        <span class="badge text-bg-success fs-6">GET</span>
-                        -
-                        <span class="badge text-bg-warning fs-6">/movies/director/:directorsName</span>
-                    </p>
-                    <h3>Description</h3>
-                    <p>Retrieve detailed information about a especific director by name.</p>
-                    <h4>Parameters</h4>
-                    <p><span class="badge text-bg-primary fs-6">'directorsName'</span> - (required)</p>
-                    <h4>Request Data</h4>
-                    <p>None</p>
-                    <h4>Response Data</h4>
-                    <ul class="list-group list-group-flush ">
-                        <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
-                        <li class="list-group-item">Content-Type: <span>JSON</span></li>
-                        <li class="list-group-item">Response Body: A JSON object holding data of genre by name. Example:
-                            <code class="d-flex justify-content-start">
-        {
-            "name": "Ridley Scott",
-            "bio": "Described by film producer Michael Deeley as \"the very best eye in the business\", director Ridley Scott was
-                    born on November 30, 1937 in South Shields, Tyne and Wear. His father was an officer in the Royal Engineers and the
-                    family followed him as his career posted him throughout the United Kingdom and Europe before they eventually returned to
-                    Teesside.",
-            "birth": "1937-11-30T00:00:00.000Z",
-            "death": null
-        }
-                            </code>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container my-3 border-bottom">
-            <div class="row">
-                <div class="col-12">
-                    <h3>User by name</h3>
-                    <p>
-                        <span class="badge text-bg-success fs-6">GET</span>
-                        -
-                        <span class="badge text-bg-warning fs-6">/users/{username}</span>
-                    </p>
-                    <h3>Description</h3>
-                    <p>Retrieve detailed information about a especific user by name.</p>
-                    <h4>Parameters</h4>
-                    <p><span class="badge text-bg-primary fs-6">'username'</span> - (required)</p>
-                    <h4>Request Data</h4>
-                    <p>None</p>
-                    <h4>Response Data</h4>
-                    <ul class="list-group list-group-flush ">
-                        <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
-                        <li class="list-group-item">Content-Type: <span>JSON</span></li>
-                        <li class="list-group-item">Response Body: A JSON object holding data of user by name. Example:
-                            <code class="d-flex justify-content-start">
-                        {
-                            "_id": "651b00f0092911baa0e5834f",
-                            "username": "xand4r",
-                            "password": "987456123",
-                            "email": "xander@gmil.com",
-                            "birthday": "1970-01-01T00:00:00.000Z",
-                            "favoriteMovies": []
-                        }
-                                    </code>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container my-3 border-bottom">
-            <div class="row">
-                <div class="col-12">
-                    <h3>Add new user</h3>
-                    <p>
-                        <span class="badge text-bg-info fs-6">POST</span>
-                        -
-                        <span class="badge text-bg-warning fs-6">/users</span>
-                    </p>
-                    <h3>Description</h3>
-                    <p>Add detailed information about a new user.</p>
-                    <h4>Parameters</h4>
-                    <p>None</p>
-                    <h4>Request Data</h4>
-                    <p>A JSON object holding data about the user to add. Example:</p>
-                    <code class="d-flex justify-content-start">
-                {
-                    "username": "lizzardWizzard",
-                    "password": "123456789",
-                    "email": "lizzwizz@mail.com",
-                    "birthday": "1990-09-19"
-                }
-                    </code>
-                    <h4>Response Data</h4>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
-                        <li class="list-group-item">Content-Type: <span>JSON</span></li>
-                        <li class="list-group-item">Response Body: A JSON object holding data about the user that was
-                            added, including an ID. Example:
-                            <code class="d-flex justify-content-start">
-                {
-                    "username": "lizzardWizzard",
-                    "password": "$2b$10$48Vs8X2WU814ycsudswfve2YJKhtSnLN8vJs8ECsleV3rUpLoaMTK",
-                    "email": "lizzwizz@mail.com",
-                    "birthday": "1990-10-09T23:00:00.000Z",
-                    "favoriteMovies": [],
-                    "_id": "6526c538edaf653bb841b42a",
-                    "__v": 0
-                }
-                                    </code>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container my-3 border-bottom">
-            <div class="row">
-                <div class="col-12">
-                    <h3>Update user information</h3>
-                    <p>
-                        <span class="badge text-bg-secondary fs-6">PUT</span>
-                        -
-                        <span class="badge text-bg-warning fs-6">/users/{username}</span>
-                    </p>
-                    <h3>Description</h3>
-                    <p>Update information from a user.</p>
-                    <h4>Parameters</h4>
-                    <p><span class="badge text-bg-primary fs-6">'username'</span> - (required)</p>
-                    <h4>Request Data</h4>
-                    <p>A JSON holding the data from the user to add. Example:</p>
-                    <code class="d-flex justify-content-start">
-                    {
-                        "username": "dragon123",
-                        "password": "12345678",
-                        "email": "dragon123@mail.com",
-                        "birthday": "11-01-2003"
-                    }
-                            </code>
-                    <h4>Response Data</h4>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
-                        <li class="list-group-item">Content-Type: <span>JSON</span></li>
-                        <li class="list-group-item">Response Body: A message indicating the user's, username, password,
-                            email and date of birth was
-                            updated. Example:
-                            <code class="d-flex justify-content-start">
-                    {
-                        "_id": "6526bde801b138a6c032067f",
-                        "username": "dragon123",
-                        "password": "12345678",
-                        "email": "dragon123@mail.com",
-                        "birthday": "2003-10-31T23:00:00.000Z",
-                        "favoriteMovies": [],
-                        "__v": 0
-                    }
-                        </code>
-
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container my-3 border-bottom">
-            <div class="row">
-                <div class="col-12">
-                    <h3>User add movie to favorite list</h3>
-                    <p>
-                        <span class="badge text-bg-info fs-6">POST</span>
-                        -
-                        <span class="badge text-bg-warning fs-6">/users/{username}/movies/{movieID}</span>
-                    </p>
-                    <h3>Description</h3>
-                    <p>Add a movie by ID into user's favorite list.</p>
-                    <h4>Parameters</h4>
-                    <p><span class="badge text-bg-primary fs-6">'username'</span> - (required)</p>
-                    <p><span class="badge text-bg-primary fs-6">'movieID'</span> - (required)</p>
-                    <h4>Request Data</h4>
-                    <p>None</p>
-                    <h4>Response Data</h4>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
-                        <li class="list-group-item">Content-Type: <span>JSON</span></li>
-                        <li class="list-group-item">Response Body: A JSON object holding data about the movie that was
-                            added. Example:
-                            <code class="d-flex justify-content-start">
-            {
-                "_id": "6526c538edaf653bb841b42a",
-                "username": "lizzardWizzard",
-                "password": "$2b$10$48Vs8X2WU814ycsudswfve2YJKhtSnLN8vJs8ECsleV3rUpLoaMTK",
-                "email": "lizzwizz@mail.com",
-                "birthday": "1990-10-09T23:00:00.000Z",
-                "favoriteMovies": [ "651b101ed217a66520af69a0"],
-                "__v": 0
-            }
-                            </code>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container my-3 border-bottom">
-            <div class="row">
-                <div class="col-12">
-                    <h3>User remove movie to favorite list</h3>
-                    <p>
-                        <span class="badge text-bg-danger fs-6">DELETE</span>
-                        -
-                        <span class="badge text-bg-warning fs-6">/users/{username}/movies/{movieId}</span>
-                    </p>
-                    <h3>Description</h3>
-                    <p>Remove a movie by ID into user's favorite list.</p>
-                    <h4>Parameters</h4>
-                    <p><span class="badge text-bg-primary fs-6">'username'</span> - (required)</p>
-                    <p><span class="badge text-bg-primary fs-6">'movieID'</span> - (required)</p>
-                    <h4>Request Data</h4>
-                    <p>None</p>
-                    <h4>Response Data</h4>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
-                        <li class="list-group-item">Content-Type: <span>JSON</span></li>
-                        <li class="list-group-item">Response Body: A JSON indicating the user's information. Example:
-                            <code class="d-flex justify-content-start">
-                {
-                    "_id": "6526c538edaf653bb841b42a",
-                    "username": "lizzardWizzard",
-                    "password": "$2b$10$48Vs8X2WU814ycsudswfve2YJKhtSnLN8vJs8ECsleV3rUpLoaMTK",
-                    "email": "lizzwizz@mail.com",
-                    "birthday": "1990-10-09T23:00:00.000Z",
-                    "favoriteMovies": [],
-                    "__v": 0
-                }
-                            </code>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container my-3">
-            <div class="row">
-                <div class="col-12">
-                    <h3>User deregistration</h3>
-                    <p>
-                        <span class="badge text-bg-danger fs-6">DELETE</span>
-                        -
-                        <span class="badge text-bg-warning fs-6">/users/{username}</span>
-                    </p>
-                    <h3>Description</h3>
-                    <p>Remove a movie by ID into user's favorite list.</p>
-                    <h4>Parameters</h4>
-                    <p><span class="badge text-bg-primary fs-6">'username'</span> - (required)</p>
-                    <h4>Request Data</h4>
-                    <p>None</p>
-                    <h4>Response Data</h4>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Status Code: <span>200 (OK)</span></li>
-                        <li class="list-group-item">Content-Type: <span>JSON</span></li>
-                        <li class="list-group-item">Response Body: A JSON object with the user's who was removed.
+            <div class="container my-3 border-bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Update user information</h3>
+                        <p>
+                            <span class="badge text-bg-secondary fs-6"
+                                >PUT</span
+                            >
+                            -
+                            <span class="badge text-bg-warning fs-6"
+                                >/users/:username</span
+                            >
+                        </p>
+                        <h3>Description</h3>
+                        <p>Update information from a user.</p>
+                        <h4>Parameters</h4>
+                        <p>
+                            <span class="badge text-bg-primary fs-6"
+                                >'username'</span
+                            >
+                            - (required)
+                        </p>
+                        <h4>Request Data</h4>
+                        <p>
+                            A JSON holding the data from the user to add.
                             Example:
-                            <code class="d-flex justify-content-start">
-                {
-                    "_id": "6526bde801b138a6c032067f",
-                    "username": "dragon123",
-                    "password": "12345678",
-                    "email": "dragon123@mail.com",
-                    "birthday": "2003-10-31T23:00:00.000Z",
-                    "favoriteMovies": ["651aff18623d3e32b0d2661e","651aff18623d3e32b0d2661f"],
-                    "__v": 0
-                }
-
-
-                            </code>
-                        </li>
-                    </ul>
+                        </p>
+                        <code class="d-flex justify-content-start">
+                            { "username": "dragon123", "password": "12345678",
+                            "email": "dragon123@mail.com", "birthday":
+                            "11-01-2003" }
+                        </code>
+                        <h4>Response Data</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Status Code: <span>200 (OK)</span>
+                            </li>
+                            <li class="list-group-item">
+                                Content-Type: <span>JSON</span>
+                            </li>
+                            <li class="list-group-item">
+                                Response Body: A message indicating the user's,
+                                username, password, email and date of birth was
+                                updated. Example:
+                                <code class="d-flex justify-content-start">
+                                    { "_id": "6526bde801b138a6c032067f",
+                                    "username": "dragon123", "password":
+                                    "12345678", "email": "dragon123@mail.com",
+                                    "birthday": "2003-10-31T23:00:00.000Z",
+                                    "favoriteMovies": [], "__v": 0 }
+                                </code>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
-</body>
+            <div class="container my-3 border-bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>User add movie to favorite list</h3>
+                        <p>
+                            <span class="badge text-bg-info fs-6">POST</span>
+                            -
+                            <span class="badge text-bg-warning fs-6"
+                                >/users/:username/movies/:movieID</span
+                            >
+                        </p>
+                        <h3>Description</h3>
+                        <p>Add a movie by ID into user's favorite list.</p>
+                        <h4>Parameters</h4>
+                        <p>
+                            <span class="badge text-bg-primary fs-6"
+                                >'username'</span
+                            >
+                            - (required)
+                        </p>
+                        <p>
+                            <span class="badge text-bg-primary fs-6"
+                                >'movieID'</span
+                            >
+                            - (required)
+                        </p>
+                        <h4>Request Data</h4>
+                        <p>None</p>
+                        <h4>Response Data</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Status Code: <span>200 (OK)</span>
+                            </li>
+                            <li class="list-group-item">
+                                Content-Type: <span>JSON</span>
+                            </li>
+                            <li class="list-group-item">
+                                Response Body: A JSON object holding data about
+                                the movie that was added. Example:
+                                <code class="d-flex justify-content-start">
+                                    { "_id": "6526c538edaf653bb841b42a",
+                                    "username": "lizzardWizzard", "password":
+                                    "$2b$10$48Vs8X2WU814ycsudswfve2YJKhtSnLN8vJs8ECsleV3rUpLoaMTK",
+                                    "email": "lizzwizz@mail.com", "birthday":
+                                    "1990-10-09T23:00:00.000Z",
+                                    "favoriteMovies": [
+                                    "651b101ed217a66520af69a0"], "__v": 0 }
+                                </code>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container my-3 border-bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>User remove movie to favorite list</h3>
+                        <p>
+                            <span class="badge text-bg-danger fs-6"
+                                >DELETE</span
+                            >
+                            -
+                            <span class="badge text-bg-warning fs-6"
+                                >/users/:username/movies/:movieId</span
+                            >
+                        </p>
+                        <h3>Description</h3>
+                        <p>Remove a movie by ID into user's favorite list.</p>
+                        <h4>Parameters</h4>
+                        <p>
+                            <span class="badge text-bg-primary fs-6"
+                                >'username'</span
+                            >
+                            - (required)
+                        </p>
+                        <p>
+                            <span class="badge text-bg-primary fs-6"
+                                >'movieID'</span
+                            >
+                            - (required)
+                        </p>
+                        <h4>Request Data</h4>
+                        <p>None</p>
+                        <h4>Response Data</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Status Code: <span>200 (OK)</span>
+                            </li>
+                            <li class="list-group-item">
+                                Content-Type: <span>JSON</span>
+                            </li>
+                            <li class="list-group-item">
+                                Response Body: A JSON indicating the user's
+                                information. Example:
+                                <code class="d-flex justify-content-start">
+                                    { "_id": "6526c538edaf653bb841b42a",
+                                    "username": "lizzardWizzard", "password":
+                                    "$2b$10$48Vs8X2WU814ycsudswfve2YJKhtSnLN8vJs8ECsleV3rUpLoaMTK",
+                                    "email": "lizzwizz@mail.com", "birthday":
+                                    "1990-10-09T23:00:00.000Z",
+                                    "favoriteMovies": [], "__v": 0 }
+                                </code>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container my-3">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>User deregistration</h3>
+                        <p>
+                            <span class="badge text-bg-danger fs-6"
+                                >DELETE</span
+                            >
+                            -
+                            <span class="badge text-bg-warning fs-6"
+                                >/users/:username</span
+                            >
+                        </p>
+                        <h3>Description</h3>
+                        <p>Remove a movie by ID into user's favorite list.</p>
+                        <h4>Parameters</h4>
+                        <p>
+                            <span class="badge text-bg-primary fs-6"
+                                >'username'</span
+                            >
+                            - (required)
+                        </p>
+                        <h4>Request Data</h4>
+                        <p>None</p>
+                        <h4>Response Data</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Status Code: <span>200 (OK)</span>
+                            </li>
+                            <li class="list-group-item">
+                                Content-Type: <span>JSON</span>
+                            </li>
+                            <li class="list-group-item">
+                                Response Body: A JSON object with the user's who
+                                was removed. Example:
+                                <code class="d-flex justify-content-start">
+                                    { "_id": "6526bde801b138a6c032067f",
+                                    "username": "dragon123", "password":
+                                    "12345678", "email": "dragon123@mail.com",
+                                    "birthday": "2003-10-31T23:00:00.000Z",
+                                    "favoriteMovies":
+                                    ["651aff18623d3e32b0d2661e","651aff18623d3e32b0d2661f"],
+                                    "__v": 0 }
+                                </code>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-    crossorigin="anonymous"></script>
-
+    <script
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"
+    ></script>
 </html>
