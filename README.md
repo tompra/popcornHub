@@ -27,25 +27,29 @@ I'm the developer behind this project, responsible for various tasks:
   - Migrated the local database to a cloud-based hosting platform.
 
 
-## App details 
+## Technologies
   - Node.js
+  - Express
   - MongoDB (Mongoose && MongoDB Atlas)
   - Postman
 
-## Dependencies
-### Frameworks
-- Express.js
+## Project Dependencies
 
-### Middlewares
-- Body-Parser: used for parsing incoming request bodies, essential for hadling request with JSON or URL-encoded data.
-- Cors: Enabling Cross-Origin Resource Sharing, allowing controlled access to resources on allowed domains.
-- Morgan: logging HTTP requests, which is used for monitoring.
+| Dependency            | Description                                                                           |
+|-----------------------|---------------------------------------------------------------------------------------|
+| bcrypt                | A library for hashing passwords.                                                      |
+| body-parser           | Middleware for parsing JSON and urlencoded request bodies.                            |
+| cors                  | Middleware for enabling Cross-Origin Resource Sharing (CORS) in Express.js.            |
+| express               | A web application framework for Node.js.                                               |
+| express-validator     | A set of express.js middlewares that wraps validator.js validator and sanitizer functions. |
+| jsonwebtoken          | A library for generating and verifying JSON Web Tokens (JWT).                          |
+| mongoose              | A MongoDB object modeling tool designed to work in an asynchronous environment.        |
+| morgan                | HTTP request logger middleware for Node.js.                                            |
+| passport              | A authentication middleware for Node.js.                                               |
+| passport-jwt          | Passport strategy for authenticating with a JSON Web Token (JWT).                      |
+| passport-local        | Passport strategy for authenticating with a username and password.                     |
+| uuid                  | A library for generating universally unique identifiers (UUIDs).                       |
+| nodemon               | A tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected. |
 
-### Libraries
-- Bcrypt: for hashing passwords, enhacing security to user's password data.
-- JSONWebTocken: creates and verifies JSON web tockens, used for authentication and authorization.
-- Mongoose: for MongoDB object modeling in Node.js.
-- Passport.js: implement user authentication and authorization strategies.
-
-
-
+## Live Demo
+[Popcornhub Live](https://popcornhub-api.onrender.com/index.html)
