@@ -1,5 +1,7 @@
 # popcornHub API 
 
+![popcornWelcome](https://github.com/tompra/popcornHub/assets/143709419/52581151-25b3-47d0-befe-a112eda8736c)
+
 ## Description
 An API able to receive infomration on movies, directors, and genres so that anyone can learn more about movies. It allows users to create profiles to save data about their favorite movies.
 
